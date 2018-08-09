@@ -23,4 +23,4 @@ public class BOJ_10809 {
 			System.out.print(i + " ");
 		}
 	}
-}
+} 

@@ -12,3 +12,4 @@ public class BOJ_11654 {
 		System.out.println(character + 0);
 	}
 }
+ 
