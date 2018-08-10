@@ -1,9 +1,7 @@
 package math;
 
-import java.awt.font.NumericShaper.Range;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
