@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
+import dijkstra.BOJ_1753.Node;
+
 public class BOJ_1753 {
 
 	public static ArrayList<Node>[] graph = null;
@@ -38,7 +40,7 @@ public class BOJ_1753 {
 	}
 
 	public static void dijkstra(int start) {
-		PriorityQueue<Node> pq = new PriorityQueue();
+		PriorityQueue<Node> pq = new PriorityQueue<Node>();
 		
 		pq.add(new Node(start, dist[start]));
 
