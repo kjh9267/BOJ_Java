@@ -24,7 +24,7 @@ public class BOJ_1717 {
 		if(a == b) {
 			return;
 		}
-		if(a > b) {
+		else if(a > b) {
 			graph[b] += graph[a];
 			graph[a] = b;
 		}
