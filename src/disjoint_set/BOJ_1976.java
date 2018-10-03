@@ -72,6 +72,7 @@ public class BOJ_1976 {
 				break;
 			}
 		}
+		
 		System.out.println(key ? "YES" : "NO");
 	}
 }
