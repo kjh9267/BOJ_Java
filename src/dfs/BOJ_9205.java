@@ -55,7 +55,6 @@ public class BOJ_9205 {
 				graph[j] = new Node(x, y);
 			}
 			visited = new boolean[N+2];
-			result = false;
 			System.out.println(dfs(0) ? "happy" : "sad");
 		}
 	}
