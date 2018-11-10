@@ -6,29 +6,38 @@ import java.util.StringTokenizer;
 
 public class BOJ_2042 {
 	public static int height, size;
-	public static long[] segment;
+	public static long[] tree, arr;
 	public static final String NEW_LINE = "\n";
 	
-	public static void update(int i, long value) {
-		i += size/2 - 1;
-		segment[i] = value;
-		while(i > 1) {
-			i /= 2;
-			segment[i] = segment[i*2] + segment[i*2 + 1];
+	public static long init(int node, int start, int end) {
+		System.out.println(node + " " + start + " " + end);
+		if(start == end)
+			return tree[node] = arr[start];
+		int mid = (start + end) / 2;
+		return tree[node] = init(node * 2, start, mid) + init(node * 2 + 1, mid + 1, end);
+	}
+	
+	public static void update(int node, int index, int start, int end, long diff) {
+		if (!(start <= index && index <= end))
+	        return;
+		
+		tree[node] = diff;
+		
+		if(start != end) {
+			int mid = (start + end) / 2;
+			update(node * 2, index, start, mid, diff);
+			update(node * 2, index, mid + 1, end, diff);
 		}
 	}
 	
-	public static long sum(long L, long R, int nodeNum, int nodeL, int nodeR) {
-//		System.out.println(L + " " + R + " " + nodeL + " " + nodeR);
-		if(nodeR == nodeL) {
-			int temp = nodeL;
-			return segment[temp];
+	public static long sum(int node, int start, int end, int left, int right) {
+		if(left > end || right < start)
+			return 0;
+		if(left <= start && end <= right) {
+			return tree[node];
 		}
-		if(R < nodeL || nodeR < L) return 0;
-		if(L <= nodeL && nodeR <= R) return segment[nodeNum];
-		int mid = (nodeL + nodeR) / 2;
-		return sum(L, R, nodeNum*2, nodeL, mid) % Long.MAX_VALUE + 
-				sum(L, R, nodeNum*2 + 1, mid+1, nodeR) % Long.MAX_VALUE;
+		int mid = (start + end) / 2;
+		return sum(node * 2, start, mid, left, right) + sum(node * 2 + 1, mid + 1, end, left, right);
 	}
 	
 	public static void main(String args[]) throws Exception{
@@ -41,31 +50,25 @@ public class BOJ_2042 {
 		
 		height = (int) Math.ceil((Math.log(N)/Math.log(2)));
 		size = (int) Math.pow(2, height+1);
-		segment = new long[size];
-//		System.out.println(size + "\n");
+		tree = new long[size];
+		arr = new long[N+1];
+//		System.out.println(size);
 		for(int i = 1; i < N + 1; i++) {
-			long num = Long.parseLong(br.readLine()) % Long.MAX_VALUE;
-			update(i,num);
+			arr[i] = Long.parseLong(br.readLine()) % Long.MAX_VALUE;
 		}
 		
-//		for(int i = 1; i < size; i++) {
-//			System.out.println(i + " " + segment[i]);
-//		}
+		init(1,1,N);
 		
 		for(int i = 0; i < M + K; i++) {
 			st = new StringTokenizer(br.readLine());
 			int a = Integer.parseInt(st.nextToken());
-			long b = Long.parseLong(st.nextToken());
-			long c = Long.parseLong(st.nextToken());
+			int b = Integer.parseInt(st.nextToken());
+			int c = Integer.parseInt(st.nextToken());
 			if(a == 1) {
-				update((int)b, c);
-//				System.out.println();
-//				for(int j = 0; j < size; j++) {
-//					System.out.println(j + " " + segment[j]);
-//				}
+				update(1,b,1,N,c);
 			}
 			else {
-				sb.append(sum(b, c, 1, 1, N)).append(NEW_LINE);
+				sb.append(sum(1,1,N,b,c)).append(NEW_LINE);
 			}
 		}
 		System.out.println(sb.toString());
