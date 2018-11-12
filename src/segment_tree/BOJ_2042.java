@@ -2,6 +2,7 @@ package segment_tree;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class BOJ_2042 {
@@ -10,7 +11,6 @@ public class BOJ_2042 {
 	public static final String NEW_LINE = "\n";
 	
 	public static long init(int node, int start, int end) {
-		System.out.println(node + " " + start + " " + end);
 		if(start == end)
 			return tree[node] = arr[start];
 		int mid = (start + end) / 2;
@@ -21,12 +21,12 @@ public class BOJ_2042 {
 		if (!(start <= index && index <= end))
 	        return;
 		
-		tree[node] = diff;
+		tree[node] += diff;
 		
 		if(start != end) {
 			int mid = (start + end) / 2;
 			update(node * 2, index, start, mid, diff);
-			update(node * 2, index, mid + 1, end, diff);
+			update(node * 2 + 1, index, mid + 1, end, diff);
 		}
 	}
 	
@@ -52,20 +52,23 @@ public class BOJ_2042 {
 		size = (int) Math.pow(2, height+1);
 		tree = new long[size];
 		arr = new long[N+1];
-//		System.out.println(size);
-		for(int i = 1; i < N + 1; i++) {
+		
+		for(int i = 1; i < N+1; i++) {
 			arr[i] = Long.parseLong(br.readLine()) % Long.MAX_VALUE;
 		}
 		
 		init(1,1,N);
-		
+
 		for(int i = 0; i < M + K; i++) {
 			st = new StringTokenizer(br.readLine());
 			int a = Integer.parseInt(st.nextToken());
 			int b = Integer.parseInt(st.nextToken());
 			int c = Integer.parseInt(st.nextToken());
 			if(a == 1) {
-				update(1,b,1,N,c);
+				long diff = c - arr[b];
+				arr[b] = c;
+				update(1,b,1,N,diff);
+
 			}
 			else {
 				sb.append(sum(1,1,N,b,c)).append(NEW_LINE);
