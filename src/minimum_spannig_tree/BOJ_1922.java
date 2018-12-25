@@ -23,7 +23,6 @@ public class BOJ_1922 {
 			int c = Integer.parseInt(st.nextToken());
 			
 			pq.add(new Node(a, b, c));
-			pq.add(new Node(b, a, c));
 		}
 		
 		System.out.println(MST(pq));
