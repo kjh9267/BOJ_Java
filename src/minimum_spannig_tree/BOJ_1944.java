@@ -1,3 +1,4 @@
+package minimum_spannig_tree;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Arrays;
