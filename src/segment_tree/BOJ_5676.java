@@ -40,6 +40,8 @@ public class BOJ_5676 {
 			init(1, 1, N);
 
 			for (int i = 0; i < K; i++) {
+				System.out.println(Arrays.toString(tree));
+
 				st = new StringTokenizer(br.readLine());
 				char op = st.nextToken().charAt(0);
 				if (op == 'C') {
