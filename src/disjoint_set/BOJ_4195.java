@@ -62,7 +62,6 @@ public class BOJ_4195 {
 			parent[x] += parent[y];
 			parent[y] = x;
 		}
-		
 		return parent[x] < 0 ? -parent[x] : -parent[y];
 	}
 }

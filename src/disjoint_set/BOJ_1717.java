@@ -8,7 +8,6 @@ import java.util.StringTokenizer;
 public class BOJ_1717 {
 	public static int[] parent;
 	
-	
 	public static int find(int cur) {
 		if(parent[cur] < 0) {
 			return cur;
@@ -16,7 +15,6 @@ public class BOJ_1717 {
 		parent[cur] = find(parent[cur]);
 		return parent[cur];
 	}
-	
 	
 	public static void merge(int a, int b) {
 		a = find(a);
@@ -33,7 +31,6 @@ public class BOJ_1717 {
 			parent[b] = a;
 		}
 	}
-	
 	
 	public static void main(String args[]) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -64,7 +61,6 @@ public class BOJ_1717 {
 				}
 			}
 		}
-		
 		System.out.println(sb);
 	}
 }
