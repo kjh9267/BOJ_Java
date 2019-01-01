@@ -6,15 +6,15 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class BOJ_1717 {
-	public static int[] graph;
+	public static int[] parent;
 	
 	
 	public static int find(int cur) {
-		if(graph[cur] < 0) {
+		if(parent[cur] < 0) {
 			return cur;
 		}
-		graph[cur] = find(graph[cur]);
-		return graph[cur];
+		parent[cur] = find(parent[cur]);
+		return parent[cur];
 	}
 	
 	
@@ -24,13 +24,13 @@ public class BOJ_1717 {
 		if(a == b) {
 			return;
 		}
-		else if(a > b) {
-			graph[b] += graph[a];
-			graph[a] = b;
+		else if(parent[a] > parent[b]) {
+			parent[b] += parent[a];
+			parent[a] = b;
 		}
 		else {
-			graph[a] += graph[b];
-			graph[b] = a;
+			parent[a] += parent[b];
+			parent[b] = a;
 		}
 	}
 	
@@ -43,8 +43,8 @@ public class BOJ_1717 {
 		int N = Integer.parseInt(st.nextToken());
 		int M = Integer.parseInt(st.nextToken());
 		
-		graph = new int[N+1];
-		Arrays.fill(graph, -1);
+		parent = new int[N+1];
+		Arrays.fill(parent, -1);
 		
 		for (int i = 0; i < M; i++) {
 			st = new StringTokenizer(br.readLine());
