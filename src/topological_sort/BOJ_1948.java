@@ -1,3 +1,4 @@
+package topological_sort;
 
 
 import java.io.BufferedReader;
@@ -10,7 +11,7 @@ import java.util.StringTokenizer;
 public class BOJ_1948 {
 	public static int[] indegree, res;
 	public static ArrayList<Node>[] graph, way;
-	public static int cnt, rcost, E;
+	public static int cnt, E;
 	public static boolean[] visited;
 	
 	public static void main(String[] args) throws Exception{
@@ -24,7 +25,6 @@ public class BOJ_1948 {
 		graph = new ArrayList[N+1];
 		visited = new boolean[N+1];
 		cnt = 0;
-		rcost = 0;
 		
 		for(int i = 0; i < N + 1; i++) {
 			graph[i] = new ArrayList<Node>();
@@ -85,15 +85,14 @@ public class BOJ_1948 {
 	}
 	
 	public static void dfs(int cur) {
-		if(res[E] - rcost == res[cur] && !visited[cur])
-			cnt += 1;
-		else
+		if(visited[cur])
 			return;
 		visited[cur] = true;
 		for(Node n: way[cur]) {
-			rcost += n.cost;
-			dfs(n.next);
-			rcost -= n.cost;
+			if(res[n.next] == res[n.cur] - n.cost) {
+				cnt += 1;
+				dfs(n.next);
+			}
 		}
 	}
 }
