@@ -25,7 +25,7 @@ public class BOJ_2512 {
 	public static int binary_search(int N, int M, int max, int[] arr) {
 		int res = 0;
 		int mid = 0;
-		int left = 0;
+		int left = 1;
 		int right = max;
 		
 		while(left<= right) {
