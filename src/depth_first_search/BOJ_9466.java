@@ -1,4 +1,4 @@
-package dfs;
+package depth_first_search;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
