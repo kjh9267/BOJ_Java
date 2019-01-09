@@ -35,7 +35,6 @@ public class BOJ_14442 {
 		int x;
 		int y;
 		int k;
-
 		public Node(int x, int y, int k) {
 			this.x = x;
 			this.y = y;
