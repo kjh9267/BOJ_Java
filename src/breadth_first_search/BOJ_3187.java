@@ -6,11 +6,11 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class BOJ_3184 {
+public class BOJ_3187 {
 	public static char[][] graph;
 	public static boolean[][] visited;
 	public static final int[][] DIR = {{0,-1},{1,0},{0,1},{-1,0}};
-	public static int R, C, O, V;
+	public static int R, C, K, V;
 	
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -28,7 +28,7 @@ public class BOJ_3184 {
 				if(graph[i][j] != '#' && !visited[i][j])
 					bfs(new Node(j,i));
 		
-		System.out.println(O + " " + V);
+		System.out.println(K + " " + V);
 	}
 	
 	public static class Node{
@@ -41,7 +41,7 @@ public class BOJ_3184 {
 	}
 	
 	public static void bfs(Node n) {
-		int o = 0;
+		int k= 0;
 		int v = 0;
 		Queue<Node> queue = new LinkedList<>();
 		queue.offer(n);
@@ -50,8 +50,8 @@ public class BOJ_3184 {
 		while(!queue.isEmpty()) {
 			Node cur = queue.poll();
 			
-			if(graph[cur.y][cur.x] == 'o')
-				o++;
+			if(graph[cur.y][cur.x] == 'k')
+				k++;
 			if(graph[cur.y][cur.x] == 'v')
 				v++;
 				
@@ -67,8 +67,8 @@ public class BOJ_3184 {
 				}
 			}
 		}
-		if(o > v)
-			O += o;
+		if(k > v)
+			K += k;
 		else
 			V += v;	
 	}
