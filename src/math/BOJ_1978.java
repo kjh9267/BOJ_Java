@@ -16,29 +16,24 @@ public class BOJ_1978 {
 		int[] nums = new int[N];
 		int cnt = 0;
 		
-		for(int i = 0; i < N; i++) {
+		for(int i = 0; i < N; i++)
 			nums[i] = Integer.parseInt(st.nextToken());
-		}
 		
 		boolean[] isPrime = new boolean[1001];
 		Arrays.fill(isPrime, true);
 		isPrime[1] = false;
 		
-		for(int i = 4; i < 1001; i += 2) {
+		for(int i = 4; i < 1001; i += 2)
 			isPrime[i] = false;
-		}
 		
-		for(int i = 3; i < 1001; i++) {
-			for(int j = i*i; j < 1001; j += i*2) {
+		for(int i = 3; i < 1001; i+=2)
+			for(int j = i*i; j < 1001; j += i*2)
 				isPrime[j] = false;
-			}
-		}
 		
-		for (int i = 0; i < N; i++) {
-			if(isPrime[nums[i]]) {
+		for (int i = 0; i < N; i++)
+			if(isPrime[nums[i]])
 				cnt++;
-			}
-		}
+
 		System.out.println(cnt);
 	}
 }
