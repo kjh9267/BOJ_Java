@@ -33,13 +33,11 @@ public class BOJ_1963 {
 	public static void init() {
 		Arrays.fill(isPrime, true);
 		isPrime[1] = false;
-		
-		for(int i = 4; i < 10000; i+=2)
-			isPrime[i] = false;
-		
-		for(int i = 3; i < 10000; i+=2)
-			for(int j = i*i; j < 10000; j+=i*2)
-				isPrime[j] = false;
+
+		for(int i = 2; i < 10000; i++)
+			if(isPrime[i])
+				for(int j = i*2; j < 10000; j+=i)
+					isPrime[j] = false;
 	}
 	
 	public static void check(int cur, int next, int[] visited, Queue<Integer> queue) {
