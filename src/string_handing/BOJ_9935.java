@@ -1,4 +1,4 @@
-package stack;
+package string_handing;
 
 
 import java.io.BufferedReader;
