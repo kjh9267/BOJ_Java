@@ -22,13 +22,11 @@ public class BOJ_1978 {
 		boolean[] isPrime = new boolean[1001];
 		Arrays.fill(isPrime, true);
 		isPrime[1] = false;
-		
-		for(int i = 4; i < 1001; i += 2)
-			isPrime[i] = false;
-		
-		for(int i = 3; i < 1001; i+=2)
-			for(int j = i*i; j < 1001; j += i*2)
-				isPrime[j] = false;
+
+		for(int i = 2; i < 1001; i++)
+			if(isPrime[i])
+				for(int j = i*2; j < 1001; j += i)
+					isPrime[j] = false;
 		
 		for (int i = 0; i < N; i++)
 			if(isPrime[nums[i]])

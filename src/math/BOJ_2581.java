@@ -14,12 +14,10 @@ public class BOJ_2581 {
 		Arrays.fill(isPrime, true);
 		isPrime[1] = false;
 		
-		for(int i = 4; i < 10001; i += 2)
-			isPrime[i] = false;
-		
-		for(int i = 3; i < 10001; i += 2)
-			for(int j = i*i; j < 10001; j += i*2)
-				isPrime[j] = false;
+		for(int i = 2; i < 10001; i ++)
+			if(isPrime[i])
+				for(int j = i*2; j < 10001; j += i)
+					isPrime[j] = false;
 		
 		int min = N + 1;
 		int sum = 0;
@@ -29,7 +27,7 @@ public class BOJ_2581 {
 					min = i;
 				sum += i;
 			}
-
+		
 		System.out.println(min == N + 1 ? -1 : sum + "\n" + min);
 	}
 }
