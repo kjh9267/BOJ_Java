@@ -5,8 +5,8 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class BOJ_15651 {
-	public static int[] nums, seq;
-	public static int N, M, pointer;
+	public static int[] nums;
+	public static int N, M;
 	public static StringBuilder sb;
 	
 	public static void main(String[] args) throws Exception{
@@ -16,31 +16,26 @@ public class BOJ_15651 {
 		N = Integer.parseInt(st.nextToken());
 		M = Integer.parseInt(st.nextToken());
 		nums = new int[N];
-		seq = new int[M];
 		
 		for(int i = 0; i < N; i++) {
 			nums[i] = i + 1;
 		}
 
-		dfs(0);
-		System.out.println(sb);
+		dfs(0, 0, "");
+		System.out.print(sb);
 	}
 	
-	public static void dfs(int cur) {
+	public static void dfs(int cur, int pointer, String s) {
 		if(pointer == M ) {
-			for(int i = 0; i < M; i++)
-				sb.append(seq[i]).append(' ');
+			sb.append(s);
 			sb.append('\n');
 			return;
 		}
 		
 		if(cur == N)
 			return;
-
-		seq[pointer] = nums[cur];
-		pointer++;
-		dfs(cur + 1);
-		pointer--;
-		dfs(cur + 1);
+		
+		dfs(0, pointer + 1, s + nums[cur] + " ");
+		dfs(cur + 1, pointer, s);
 	}
 }
