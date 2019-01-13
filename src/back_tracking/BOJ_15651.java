@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class BOJ_15650 {
+public class BOJ_15651 {
 	public static int[] nums, seq;
 	public static int N, M, pointer;
 	public static StringBuilder sb;
@@ -29,7 +29,7 @@ public class BOJ_15650 {
 	public static void dfs(int cur) {
 		if(pointer == M ) {
 			for(int i = 0; i < M; i++)
-				sb.append(seq[i] + " ");
+				sb.append(seq[i]).append(' ');
 			sb.append('\n');
 			return;
 		}
