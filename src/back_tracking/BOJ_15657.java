@@ -17,7 +17,7 @@ public class BOJ_15657 {
 		N = Integer.parseInt(st.nextToken());
 		M = Integer.parseInt(st.nextToken());
 		nums = new int[N];
-		
+	
 		st = new StringTokenizer(br.readLine());
 		for(int i = 0; i < N; i++)
 			nums[i] = Integer.parseInt(st.nextToken());
