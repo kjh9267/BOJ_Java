@@ -27,8 +27,8 @@ public class BOJ_15656 {
 		System.out.print(sb);
 	}
 	
-	public static void dfs(int cur, int pointer, String s) {
-		if(pointer == M ) {
+	public static void dfs(int cur, int depth, String s) {
+		if(depth == M ) {
 			sb.append(s);
 			sb.append('\n');
 			return;
@@ -38,6 +38,6 @@ public class BOJ_15656 {
 			return;
 		
 		for(int i = 0; i < N; i++)
-			dfs(i, pointer + 1, s + nums[i] + " ");
+			dfs(i, depth + 1, s + nums[i] + " ");
 	}
 }

@@ -29,8 +29,8 @@ public class BOJ_15663 {
 		System.out.print(sb);
 	}
 
-	public static void dfs(int cur, int pointer, String s) {
-		if(pointer == M ) {
+	public static void dfs(int cur, int depth, String s) {
+		if(depth == M ) {
 			sb.append(s);
 			sb.append('\n');
 			return;
@@ -45,7 +45,7 @@ public class BOJ_15663 {
 				continue;
 			prev = nums[i];
 			visited[i] = true;
-			dfs(i, pointer + 1, s + nums[i] + " ");
+			dfs(i, depth + 1, s + nums[i] + " ");
 			visited[i] = false;
 		}
 	}
