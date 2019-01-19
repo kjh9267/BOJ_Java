@@ -8,7 +8,7 @@ import java.util.Stack;
 /**
  * 
  * @author Junho
- * 		후위표기식
+ *		postfix notation
  * @see https://www.acmicpc.net/problem/1918
  * 
  */
