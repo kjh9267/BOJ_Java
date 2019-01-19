@@ -5,6 +5,13 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Stack;
 
+/**
+ * 
+ * @author Junho
+ * 		후위표기식
+ * @see https://www.acmicpc.net/problem/1918
+ * 
+ */
 public class BOJ_1918 {
 	public static HashMap<Character, Integer> priority;
 	public static Stack<Character> stack;
