@@ -10,7 +10,7 @@ import java.util.StringTokenizer;
 /**
  * 
  * @author Junho
- *		·Îº¿ Ã»¼Ò±â
+ *	
  * @see https://www.acmicpc.net/problem/4991
  * 
  */
