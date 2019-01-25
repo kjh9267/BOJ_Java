@@ -82,19 +82,21 @@ public class BOJ_4991 {
 					int nextX = cur.x + dir[0];
 					int nextY = cur.y + dir[1];
 					
-					if(0 <= nextX && nextX < W && 0 <= nextY && nextY < H)
-						if(!visited[nextY][nextX].containsKey(cur.dust))
-							if(graph[nextY][nextX] == '.') {
-								queue.offer(new Node(nextX,nextY,cur.dust));
-								visited[nextY][nextX].put(cur.dust,0);
-							}
-							else if(graph[nextY][nextX] == '*') {
-								int temp = cur.dust | (1 << dust[nextY][nextX]);
-								queue.offer(new Node(nextX,nextY,temp));
-								visited[nextY][nextX].put(temp,0);
-								if(temp == (int) Math.pow(2,num) - 1)
-									return cnt;
-							}
+					if(nextX < 0 || nextX >= W || nextY < 0 || nextY >= H)
+						continue;
+					if(visited[nextY][nextX].containsKey(cur.dust))
+						continue;
+					if(graph[nextY][nextX] == '.') {
+						queue.offer(new Node(nextX,nextY,cur.dust));
+						visited[nextY][nextX].put(cur.dust,0);
+					}
+					else if(graph[nextY][nextX] == '*') {
+						int temp = cur.dust | (1 << dust[nextY][nextX]);
+						queue.offer(new Node(nextX,nextY,temp));
+						visited[nextY][nextX].put(temp,0);
+						if(temp == (int) Math.pow(2,num) - 1)
+							return cnt;
+					}
 				}
 			}
 		}
