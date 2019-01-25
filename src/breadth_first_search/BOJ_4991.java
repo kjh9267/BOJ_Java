@@ -7,6 +7,14 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
+/**
+ * 
+ * @author Junho
+ *		·Îº¿ Ã»¼Ò±â
+ * @see https://www.acmicpc.net/problem/4991
+ * 
+ */
+
 public class BOJ_4991 {
 	public static int W, H, num;
 	public static char[][] graph;
