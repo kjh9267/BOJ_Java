@@ -1,4 +1,4 @@
-package minimum_spannig_tree;
+package minimum_spanning_tree;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Arrays;
@@ -154,7 +154,7 @@ public class BOJ_1944 {
 
 		while (!pq.isEmpty()) {
 			Node cur = pq.poll();
-//System.out.println(cur.from + " " + cur.to + " " + cur.cost);
+
 			if (!isCycle(cur.from, cur.to)) {
 				merge(cur.from, cur.to);
 				mincost += cur.cost;

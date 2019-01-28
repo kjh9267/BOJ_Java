@@ -1,4 +1,4 @@
-package minimum_spannig_tree;
+package minimum_spanning_tree;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -33,7 +33,6 @@ public class BOJ_1647 {
 			
 			pq.offer(new Node(A, B, C));
 		}
-		
 		init(N);
 		System.out.println(MST(pq,N));
 	}

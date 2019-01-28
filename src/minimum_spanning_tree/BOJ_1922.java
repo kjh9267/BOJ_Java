@@ -1,4 +1,4 @@
-package minimum_spannig_tree;
+package minimum_spanning_tree;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -81,7 +81,6 @@ public class BOJ_1922 {
 		}
 		return true;
 	}
-	
 	private static int MST(PriorityQueue<Node> pq, int N) {
 		int mincost = 0;
 		int cnt = 0;

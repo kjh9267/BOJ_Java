@@ -1,4 +1,4 @@
-package minimum_spannig_tree;
+package minimum_spanning_tree;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -13,7 +13,6 @@ import java.util.StringTokenizer;
  * @see https://www.acmicpc.net/problem/1197
  * 
  */
-
 
 public class BOJ_1197 {
 	public static int[] parent;

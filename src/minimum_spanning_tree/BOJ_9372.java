@@ -1,4 +1,4 @@
-package minimum_spannig_tree;
+package minimum_spanning_tree;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
