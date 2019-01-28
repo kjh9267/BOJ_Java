@@ -6,6 +6,14 @@ import java.util.Arrays;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
+/**
+ * 
+ * @author Junho
+ *
+ * @see https://www.acmicpc.net/problem/9372
+ *
+ */
+
 public class BOJ_9372 {
 	public static int[] parent;
 
@@ -27,7 +35,7 @@ public class BOJ_9372 {
 				pq.offer(new Node(A, B, 1));
 			}
 			init(N);
-			System.out.println(MST(pq));
+			System.out.println(MST(pq,N));
 		}
 	}
 
@@ -52,44 +60,38 @@ public class BOJ_9372 {
 	}
 
 	public static int find(int x) {
-		if (parent[x] < 0) {
+		if (parent[x] < 0)
 			return x;
-		}
-		parent[x] = find(parent[x]);
-		return parent[x];
+		return parent[x] = find(parent[x]);
 	}
 
-	public static void merge(int x, int y) {
+	public static boolean merge(int x, int y) {
 		x = find(x);
 		y = find(y);
 
-		if (x == y) {
-			return;
-		} else if (x > y) {
+		if (x == y)
+			return false;
+		else if (parent[x] > parent[y]) {
 			parent[y] += parent[x];
 			parent[x] = y;
 		} else {
 			parent[x] += parent[y];
 			parent[y] = x;
 		}
+		return true;
 	}
 
-	public static boolean isCycle(int x, int y) {
-		x = find(x);
-		y = find(y);
-
-		return x == y ? true : false;
-	}
-
-	public static int MST(PriorityQueue<Node> pq) {
+	public static int MST(PriorityQueue<Node> pq, int N) {
 		int mincost = 0;
+		int cnt = 0;
 
-		while (!pq.isEmpty()) {
+		while (true) {
 			Node cur = pq.poll();
 
-			if (!isCycle(cur.from, cur.to)) {
-				merge(cur.from, cur.to);
+			if (merge(cur.from, cur.to)) {
 				mincost += cur.cost;
+				if(++cnt == N-1)
+					break;
 			}
 		}
 		return mincost;
