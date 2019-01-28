@@ -5,6 +5,14 @@ import java.io.InputStreamReader;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
+/**
+ * 
+ * @author Junho
+ *
+ * @see https://www.acmicpc.net/problem/1922
+ *
+ */
+
 public class BOJ_1922 {
 	static int[] parent;
 	
@@ -25,7 +33,7 @@ public class BOJ_1922 {
 			pq.add(new Node(a, b, c));
 		}
 		
-		System.out.println(MST(pq));
+		System.out.println(MST(pq,N));
 	}
 	
 	private static class Node implements Comparable<Node>{
@@ -47,25 +55,22 @@ public class BOJ_1922 {
 	
 	private static void init(int N) {
 		parent = new int[N + 1];
-		for(int i = 1; i < N + 1; i++) {
+		for(int i = 1; i < N + 1; i++)
 			parent[i] = -1;
-		}
 	}
 	
 	private static int find(int x) {
 		if(parent[x] < 0) 
 			return x;
-		parent[x] = find(parent[x]);
-		return parent[x];
+		return parent[x] = find(parent[x]);
 	}
 	
-	private static void merge(int x, int y) {
+	private static boolean merge(int x, int y) {
 		x = find(x);
 		y = find(y);
 		
-		if(x == y) {
-			return;
-		}
+		if(x == y)
+			return false;
 		else if(x > y) {
 			parent[y] += parent[x];
 			parent[x] = y;
@@ -74,24 +79,20 @@ public class BOJ_1922 {
 			parent[x] += parent[y];
 			parent[y] = x;
 		}
+		return true;
 	}
 	
-	private static boolean isCycle(int x, int y) {
-		x = find(x);
-		y = find(y);
-		
-		return x == y ? true : false;
-	}
-	
-	private static int MST(PriorityQueue<Node> pq) {
+	private static int MST(PriorityQueue<Node> pq, int N) {
 		int mincost = 0;
+		int cnt = 0;
 		
-		while(!pq.isEmpty()) {
+		while(true) {
 			Node cur = pq.poll();
 			
-			if(!isCycle(cur.from, cur.to)) {
-				merge(cur.from, cur.to);
+			if(merge(cur.from, cur.to)) {
 				mincost += cur.cost;
+				if(++cnt == N - 1)
+					break;
 			}
 		}
 		return mincost;
