@@ -3,7 +3,6 @@ package strongly_connected_component;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
@@ -21,7 +20,7 @@ public class BOJ_4013 {
 	public static int N, M, S, P, cnt, DAGIndex = -1;
 	public static ArrayList<Integer>[] graph, DAG;
 	public static int[] atm, indegree, dfsN, DAGCheck, res, sum;
-	public static boolean[] finished, visited, restaurants, hasRestaurant;
+	public static boolean[] finished, restaurants, hasRestaurant, canGo;
 	public static Stack<Integer> stack;
 	public static ArrayList<ArrayList<Integer>> scc;
 	
@@ -53,8 +52,8 @@ public class BOJ_4013 {
 			atm[i] = Integer.parseInt(br.readLine());
 		
 		st = new StringTokenizer(br.readLine());
-		int S = Integer.parseInt(st.nextToken());
-		int P = Integer.parseInt(st.nextToken());
+		S = Integer.parseInt(st.nextToken());
+		P = Integer.parseInt(st.nextToken());
 		
 		st = new StringTokenizer(br.readLine());
 		for(int i = 0; i < P; i++) {
@@ -64,47 +63,38 @@ public class BOJ_4013 {
 		for(int i = 1; i < N; i++)
 			if(!finished[i])
 				dfs(i);
-		
-		for(int i = 0; i < scc.size(); i++)
-			System.out.println(i + " " + Arrays.toString(scc.get(i).toArray()));
-		
+
 		indegree = new int[DAGIndex + 1];
-		visited = new boolean[DAGIndex + 1];
 		DAG = new ArrayList[DAGIndex + 1];
 		res = new int[DAGIndex + 1];
 		hasRestaurant = new boolean[DAGIndex + 1];
 		sum = new int[DAGIndex + 1];
+		canGo = new boolean[DAGIndex + 1];
 		
 		for(int i = 0; i <= DAGIndex; i++)
 			DAG[i] = new ArrayList<>();
 		
 		for(int i = 0; i <= DAGIndex; i++) {
 			for(int node : scc.get(i)) {
+				if(restaurants[node])
+					hasRestaurant[DAGCheck[node]] = true;
+				sum[i] += atm[node];
 				for(int next : graph[node]) {
-					if(DAGCheck[node] != DAGCheck[next] && !visited[DAGCheck[next]]) {
-						if(restaurants[node])
-							hasRestaurant[DAGCheck[node]] = true;
+					if(DAGCheck[node] != DAGCheck[next]) {
 						DAG[i].add(DAGCheck[next]);
-						visited[DAGCheck[next]] = true;
 						indegree[DAGCheck[next]] += 1;
-						sum[i] += atm[node];
 					}
 				}
 			}
 		}
-		
-		for(int i = 0; i < DAG.length; i++)
-			System.out.println(i + " " + Arrays.toString(DAG[i].toArray()));
-		
+
 		topologicalSort(DAGIndex + 1);
-		
-		System.out.println(Arrays.toString(hasRestaurant));
-		
+
 		int max = 0;
 		for(int i = 0; i < DAGIndex + 1; i++)
-			if(max < res[i] && hasRestaurant[i])
+			if(max < res[i] && hasRestaurant[i] && canGo[i])
 				max = res[i];
-		
+
 		System.out.println(max);
 	}
 	
@@ -151,15 +141,22 @@ public class BOJ_4013 {
 	
 	public static void topologicalSort(int N) {
 		Queue<Integer> queue = new LinkedList<>();
-		
-		for(int i = 0; i < N; i++)
+
+		for(int i = 0; i < N; i++) {
+			res[i] = sum[i];
+			if(i == DAGCheck[S])
+				canGo[i] = true;
 			if(indegree[i] == 0)
 				queue.offer(i);
+		}
 		
 		while(N-- > 0) {
 			int cur = queue.poll();
 			for(int next : DAG[cur]) {
-				res[next] = Math.max(res[next], sum[next] + res[cur]);
+				if(canGo[cur]) {
+					res[next] = Math.max(res[next], sum[next] + res[cur]);
+					canGo[next] = true;
+				}
 				if (--indegree[next] == 0) 
 					queue.offer(next);
 			}
