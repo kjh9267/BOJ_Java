@@ -17,7 +17,7 @@ import java.util.StringTokenizer;
  */
 
 public class BOJ_4013 {
-	public static int N, M, S, P, cnt, DAGIndex = -1;
+	public static int N, M, S, P, cnt, DAGIndex = -1, DAGLen;
 	public static ArrayList<Integer>[] graph, DAG;
 	public static int[] atm, indegree, dfsN, DAGCheck, res, sum;
 	public static boolean[] finished, restaurants, hasRestaurant, canGo;
@@ -64,34 +64,11 @@ public class BOJ_4013 {
 			if(!finished[i])
 				dfs(i);
 
-		indegree = new int[DAGIndex + 1];
-		DAG = new ArrayList[DAGIndex + 1];
-		res = new int[DAGIndex + 1];
-		hasRestaurant = new boolean[DAGIndex + 1];
-		sum = new int[DAGIndex + 1];
-		canGo = new boolean[DAGIndex + 1];
-		
-		for(int i = 0; i <= DAGIndex; i++)
-			DAG[i] = new ArrayList<>();
-		
-		for(int i = 0; i <= DAGIndex; i++) {
-			for(int node : scc.get(i)) {
-				if(restaurants[node])
-					hasRestaurant[DAGCheck[node]] = true;
-				sum[i] += atm[node];
-				for(int next : graph[node]) {
-					if(DAGCheck[node] != DAGCheck[next]) {
-						DAG[i].add(DAGCheck[next]);
-						indegree[DAGCheck[next]] += 1;
-					}
-				}
-			}
-		}
-
-		topologicalSort(DAGIndex + 1);
+		DAGModeling();
+		topologicalSort(DAGLen);
 
 		int max = 0;
-		for(int i = 0; i < DAGIndex + 1; i++)
+		for(int i = 0; i < DAGLen; i++)
 			if(max < res[i] && hasRestaurant[i] && canGo[i])
 				max = res[i];
 
@@ -136,6 +113,33 @@ public class BOJ_4013 {
 			DAGCheck[node] = DAGIndex;
 			if(node == cur)
 				break;
+		}
+	}
+	
+	public static void DAGModeling() {
+		DAGLen = DAGIndex + 1;
+		indegree = new int[DAGLen];
+		DAG = new ArrayList[DAGLen];
+		res = new int[DAGLen];
+		hasRestaurant = new boolean[DAGLen];
+		sum = new int[DAGLen];
+		canGo = new boolean[DAGLen];
+		
+		for(int i = 0; i < DAGLen; i++)
+			DAG[i] = new ArrayList<>();
+		
+		for(int i = 0; i < DAGLen; i++) {
+			for(int node : scc.get(i)) {
+				if(restaurants[node])
+					hasRestaurant[DAGCheck[node]] = true;
+				sum[i] += atm[node];
+				for(int next : graph[node]) {
+					if(DAGCheck[node] != DAGCheck[next]) {
+						DAG[i].add(DAGCheck[next]);
+						indegree[DAGCheck[next]] += 1;
+					}
+				}
+			}
 		}
 	}
 	
