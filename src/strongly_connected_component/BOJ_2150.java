@@ -53,30 +53,12 @@ public class BOJ_2150 {
 			if(dfsN[i] == 0)
 				dfs(i);
 		
-		for(int i = 1; i < scc + 1; i++)
-			Collections.sort(res[i]);
-		
-		Arrays.sort(res, new Comparator<ArrayList<Integer>>() {
-			@Override
-			public int compare(ArrayList<Integer> a, ArrayList<Integer> b) {
-				if(a.isEmpty())
-					return 2;
-				if(b.isEmpty())
-					return -2;
-				if(a.get(0) < b.get(0))
-					return -1;
-				else if(a.get(0) == b.get(0))
-					return 0;
-				else
-					return 1;
-			}
-		});
+		sorting();
 		
 		sb.append(scc).append('\n');
 		for(int i = 0; i < scc; i++) {
-			for(int j = 0; j < res[i].size(); j++) {
+			for(int j = 0; j < res[i].size(); j++)
 				sb.append(res[i].get(j)).append(' ');
-			}
 			sb.append(-1).append('\n');
 		}
 
@@ -96,12 +78,12 @@ public class BOJ_2150 {
 		}
 		
 		if(ancestor == dfsN[cur])
-			merge(cur);
+			extract(cur);
 			
 		return ancestor;
 	}
 	
-	public static void merge(int cur) {
+	public static void extract(int cur) {
 		scc += 1;
 		while(true) {
 			int node = stack.pop();
@@ -110,5 +92,27 @@ public class BOJ_2150 {
 			if(node == cur)
 				break;
 		}
+	}
+	
+	public static void sorting() {
+
+		for(int i = 1; i < scc + 1; i++)
+			Collections.sort(res[i]);
+		
+		Arrays.sort(res, new Comparator<ArrayList<Integer>>() {
+			@Override
+			public int compare(ArrayList<Integer> a, ArrayList<Integer> b) {
+				if(a.isEmpty())
+					return 2;
+				if(b.isEmpty())
+					return -2;
+				if(a.get(0) < b.get(0))
+					return -1;
+				else if(a.get(0) == b.get(0))
+					return 0;
+				else
+					return 1;
+			}
+		});
 	}
 }
