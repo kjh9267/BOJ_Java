@@ -6,6 +6,16 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
+
+/**
+ * 
+ * @author Junho
+ *
+ * @see https://www.acmicpc.net/problem/10026
+ * 
+ */
+
+
 public class BOJ_10026 {
 	private static BufferedReader br;
 	private static char[][] graph;
