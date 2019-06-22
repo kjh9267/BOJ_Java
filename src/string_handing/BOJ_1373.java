@@ -11,7 +11,6 @@ import java.io.InputStreamReader;
  *
  */
 
-
 public class BOJ_1373 {
 	public static void main(String[] args) throws Exception {
 		StringBuilder sb = new StringBuilder();
