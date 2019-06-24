@@ -1,5 +1,11 @@
 package string_handing;
 
+/**
+ * @author Junho
+ * 
+ * @see https://www.acmicpc.net/problem/1259
+ */
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
