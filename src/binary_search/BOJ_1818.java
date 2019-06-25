@@ -46,7 +46,7 @@ public class BOJ_1818 {
 		}
 		return pointer + 1;
 	}
-	
+
 	public static int binary_search(int target, int hi) {
 		int lo = -1;
 
