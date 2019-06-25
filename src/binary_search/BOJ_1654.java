@@ -4,44 +4,49 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+/**
+ * 
+ * @author Junho
+ *
+ * @see https://www.acmicpc.net/problem/1654
+ *
+ */
+
 public class BOJ_1654 {
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		int K = Integer.parseInt(st.nextToken());
 		int N = Integer.parseInt(st.nextToken());
-		int[] arr = new int[K+1];
-		int max = 0;
+		long[] arr = new long[K];
+		long max = 0;
 		
-		for(int i = 1; i < K + 1; i++) {
+		for(int i = 0; i < K; i++) {
 			int num = Integer.parseInt(br.readLine());
-			if(max < num) max = num;
+			if(max < num)
+				max = num;
 			arr[i] = num;
 		}
 		System.out.println(binary_search(N, K, max, arr));
 	}
 	
-	public static long binary_search(int N, int K, int max, int[] arr) {
-		long res = 0;
-		long left = 1;
-		long right = max;
+	public static long binary_search(int N, int K, long max, long[] arr) {
+		long lo = 1;
+		long hi = max + 1;
 		long mid;
 
-		while(left <= right) {
-			int cnt = 0;
-			mid = (left + right) >> 1;
+		while(lo + 1 < hi) {
+			long cnt = 0;
+			mid = (lo + hi) >> 1;
 			
-			for(int i = 1; i < K + 1; i++) {
+			for(int i = 0; i < K; i++)
 				cnt += arr[i] / mid;
-			}
 
-			if(cnt >= N) {
-				left = mid + 1;
-				res = mid;
-			}
+			if(cnt >= N)
+				lo = mid;
 			else
-				right = mid - 1;
+				hi = mid;
 		}
-		return res;
+		return lo;
 	}
 }
