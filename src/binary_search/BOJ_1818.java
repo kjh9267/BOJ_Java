@@ -1,3 +1,5 @@
+package binary_search;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
@@ -10,7 +12,7 @@ import java.util.StringTokenizer;
  *
  */
 
-public class Test {
+public class BOJ_1818 {
 	public static int[] seq, tempSeq;
 	public static int N;
 	
