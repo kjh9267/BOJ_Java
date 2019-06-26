@@ -35,7 +35,6 @@ public class BOJ_1981 {
 					MIN = grid[i][j];
 			}
 		}
-
 		System.out.println(binarySearch());
 	}
 	
