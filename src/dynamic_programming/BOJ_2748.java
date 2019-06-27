@@ -1,3 +1,5 @@
+package dynamic_programming;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Arrays;
@@ -11,7 +13,7 @@ import java.util.StringTokenizer;
  *
  */
 
-public class Test {
+public class BOJ_2748 {
 	public static long[] dp;
 	
 	public static long solve(int N) {
