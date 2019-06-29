@@ -3,43 +3,47 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
+/**
+ * 
+ * @author Junho
+ *
+ * @see https://www.acmicpc.net/problem/11055
+ *
+ */
 
 public class Test {
-	public static long[][] dp;
-	public static int[] acc, data;
+	public static int[] sequence, dp, res;
+	public static int N;
 	
-	public static void main(String[] args) throws Exception {
-		StringBuilder sb = new StringBuilder();
+	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int T = Integer.parseInt(br.readLine());
-
-		while(T-- > 0) {
-			int K = Integer.parseInt(br.readLine());
-			acc = new int[K + 1];
-			dp = new long[K][K];
-			data = new int[K];
-			for(int i = 0; i < K; i++)
-				Arrays.fill(dp[i], -1);
-			StringTokenizer st = new StringTokenizer(br.readLine());
-			
-			for(int i = 0; i < K; i++)
-				data[i] = Integer.parseInt(st.nextToken());
-			for(int i = 1; i < K + 1; i++)
-				acc[i] = acc[i - 1] + data[i - 1];
-			sb.append(solve(0, K - 1)).append('\n');
-		}
-		System.out.println(sb);			
+		N = Integer.parseInt(br.readLine());
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		sequence = new int[N];
+		dp = new int[N];
+		int res = 0;
+		
+		Arrays.fill(dp, -1);
+		for(int i = 0; i < N; i++)
+			sequence[i] = Integer.parseInt(st.nextToken());
+		
+		for(int i = 0; i < N; i++)
+			res = Math.max(res, solve(i));
+		
+		System.out.println(res);
 	}
-	public static long solve(int start, int end) {
-		if(start >= end) 
-			return 0;
-		if(dp[start][end] != -1)
-			return dp[start][end];
-		if(start + 1 == end) 
-			return data[start] + data[end];
-		dp[start][end] = Integer.MAX_VALUE;
-		for(int i = start; i < end; i++)
-			dp[start][end] = Math.min(dp[start][end], solve(start, i) + solve(i + 1, end) + acc[end + 1] - acc[start]);
-		return dp[start][end];
+	
+	public static int solve(int start) {
+		if(dp[start] != -1)
+			return dp[start];
+		
+		dp[start] = 1;
+		for(int next = start + 1; next < N; next++)
+			if(sequence[start] < sequence[next]) {
+				dp[start] = Math.max(dp[start], solve(next) + 1);
+				res[next]	
+			}
+
+		return dp[start];
 	}
 }
