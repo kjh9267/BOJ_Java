@@ -4,6 +4,14 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Stack;
 
+/**
+ * 
+ * @author Junho
+ *
+ * @see https://www.acmicpc.net/problem/1725
+ *
+ */
+
 public class BOJ_1725 {
 	public static void main(String[] args)throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
