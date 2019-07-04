@@ -1,4 +1,4 @@
-package depth_first_search;
+package tree;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
