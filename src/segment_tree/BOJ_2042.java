@@ -5,6 +5,14 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
+/**
+ * 
+ * @author Junho
+ *
+ * @see https://www.acmicpc.net/problem/2042
+ *
+ */
+
 public class BOJ_2042 {
 	public static int height, size;
 	public static long[] tree, arr;
