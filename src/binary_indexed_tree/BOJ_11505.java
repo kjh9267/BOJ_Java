@@ -9,11 +9,11 @@ import java.util.StringTokenizer;
  * 
  * @author Junho
  *
- * @see https://www.acmicpc.net/problem/2042
+ * @see https://www.acmicpc.net/problem/11505
  *
  */
 
-public class BOJ_2042 {
+public class BOJ_11505 {
 	public static long[] tree, data;
 	public static final String NEW_LINE = "\n";
 	public static int N;
