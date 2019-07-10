@@ -1,8 +1,4 @@
-/**
- * @author Junho
- * 
- * @see https://www.acmicpc.net/problem/1939
- */
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,75 +8,92 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.StringTokenizer;
 
+/**
+ * 
+ * @author Junho
+ *
+ * @see https://www.acmicpc.net/problem/2820
+ *
+ */
+
 public class Test {
-	public static int N, M, source, sink, MAX = 0;
-	public static ArrayList<Node>[] graph;
-	public static boolean[] visited;
-	public static boolean flag;
+	public static int N, cnt = 1;
+	public static int[] tree, data, start, end, temp;
+	public static ArrayList<Integer>[] adj;
 	
 	public static void main(String[] args) throws Exception{
+		StringBuilder sb = new StringBuilder();
+//		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//		StringTokenizer st = new StringTokenizer(br.readLine());
 		InputReader in = new InputReader(System.in);
 		N = in.readInt();
-		M = in.readInt();
-		graph = new ArrayList[N + 1];
+		int M = in.readInt();
+		adj = new ArrayList[N + 1];
+		data = new int[N + 1];
+		start = new int[N + 1];
+		end = new int[N + 1];
+		tree = new int[N + 1];
+		temp = new int[N + 1];
 		
 		for(int i = 1; i < N + 1; i++)
-			graph[i] = new ArrayList<Node>();
+			adj[i] = new ArrayList<Integer>();
 		
-		for(int i = 0; i < M; i++) {
-			int x = in.readInt();
-			int y = in.readInt();
+		temp[1] = in.readInt();
+		for(int i = 2; i < N + 1; i++) {
+//			st = new StringTokenizer(br.readLine());
 			int cost = in.readInt();
-			graph[x].add(new Node(y, cost));
-			graph[y].add(new Node(x, cost));
-			MAX = Math.max(MAX, cost);
+			int parent = in.readInt();
+			adj[parent].add(i);
+			temp[i] = cost;
 		}
-		source = in.readInt();
-		sink = in.readInt();
 		
-		System.out.println(binarySearch());
+		dfs(1);
+		for(int i = 1; i < N + 1; i++)
+			data[start[i]] = temp[i];
+
+		for(int i = 1; i < N + 1; i++) {
+			update(start[i], data[start[i]]);
+			update(start[i] + 1, -data[start[i]]);
+		}
+
+		for(int i = 0 ; i < M; i++) {
+//			st = new StringTokenizer(br.readLine());
+			char op = in.readString().charAt(0);
+			if(op == 'p') {
+				int s = in.readInt();
+				int c = in.readInt();
+				update(start[s] + 1, c);
+				update(end[s] + 1, -c);
+			}
+			else {
+				int s = in.readInt();
+				sb.append(get(start[s])).append('\n');
+			}
+		}
+		System.out.println(sb);
 	}
 	
-	public static class Node{
-		int next;
-		int cost;
-		public Node(int next, int cost) {
-			this.next = next;
-			this.cost = cost;
+	public static void dfs(int cur) {
+		start[cur] = cnt++;
+		for(int next : adj[cur])
+			dfs(next);
+		end[cur] = cnt - 1;
+	}
+	
+	public static void update(int idx, int diff) {
+		while(idx < N + 1) {
+			tree[idx] += diff;
+			idx += (-idx & idx);
 		}
 	}
 	
-	public static int binarySearch() {
-		int lo = 1;
-		int hi = MAX + 1;
-		
-		while(lo + 1 < hi) {
-			int mid = (lo + hi) >> 1;
-			visited = new boolean[N + 1];
-			visited[source] = true;
-			flag = false;
-			dfs(source, mid);
-			if(flag)
-				lo = mid;
-			else
-				hi = mid;
+	public static int get(int idx) {
+		int acc = 0;
+		while(idx > 0) {
+			acc += tree[idx];
+			idx -= (-idx & idx);
 		}
-		return lo;
-	}
-	
-	public static void dfs(int cur, int cost) {
-		if(cur == sink) {
-			flag = true;
-			return;
-		}
-		for(Node n : graph[cur]) {
-			if(visited[n.next])
-				continue;
-			if(n.cost < cost)
-				continue;
-			visited[n.next] = true;
-			dfs(n.next, cost);
-		}
+		return acc;
 	}
 	
 	private static class InputReader {
@@ -134,6 +147,18 @@ public class Test {
 			return res * sgn;
 		}
 
+		public String readString() {
+			int c = read();
+			while (isSpaceChar(c)) {
+				c = read();
+			}
+			StringBuilder res = new StringBuilder();
+			do {
+				res.appendCodePoint(c);
+				c = read();
+			} while (!isSpaceChar(c));
+			return res.toString();
+		}
 		public boolean isSpaceChar(int c) {
 			if (filter != null) {
 				return filter.isSpaceChar(c);
@@ -141,9 +166,12 @@ public class Test {
 			return c == ' ' || c == '\n' || c == '\r' || c == '\t' || c == -1;
 		}
 
+		public String next() {
+			return readString();
+		}
+
 		public interface SpaceCharFilter {
 			public boolean isSpaceChar(int ch);
 		}
 	}
 }
-
