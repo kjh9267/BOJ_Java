@@ -1,177 +1,124 @@
-
-
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.InputMismatchException;
-import java.util.StringTokenizer;
-
-/**
- * 
- * @author Junho
- *
- * @see https://www.acmicpc.net/problem/2820
- *
- */
-
 public class Test {
-	public static int N, cnt = 1;
-	public static int[] tree, data, start, end, temp;
-	public static ArrayList<Integer>[] adj;
-	
-	public static void main(String[] args) throws Exception{
+	public static long[] tree;
+	public static int N;
+	public static void main(String[] args) throws Exception {
 		StringBuilder sb = new StringBuilder();
-//		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//		StringTokenizer st = new StringTokenizer(br.readLine());
-		InputReader in = new InputReader(System.in);
-		N = in.readInt();
-		int M = in.readInt();
-		adj = new ArrayList[N + 1];
-		data = new int[N + 1];
-		start = new int[N + 1];
-		end = new int[N + 1];
-		tree = new int[N + 1];
-		temp = new int[N + 1];
-		
-		for(int i = 1; i < N + 1; i++)
-			adj[i] = new ArrayList<Integer>();
-		
-		temp[1] = in.readInt();
-		for(int i = 2; i < N + 1; i++) {
-//			st = new StringTokenizer(br.readLine());
-			int cost = in.readInt();
-			int parent = in.readInt();
-			adj[parent].add(i);
-			temp[i] = cost;
+		IR in = new IR(System.in);
+		N = in.rI();
+		tree = new long[N + 1];
+		for(int i = 1; i <= N; i++) {
+			int num = in.rI();
+			update(i, num);
+			update(i + 1, -num);
 		}
-		
-		dfs(1);
-		for(int i = 1; i < N + 1; i++)
-			data[start[i]] = temp[i];
-
-		for(int i = 1; i < N + 1; i++) {
-			update(start[i], data[start[i]]);
-			update(start[i] + 1, -data[start[i]]);
-		}
-
-		for(int i = 0 ; i < M; i++) {
-//			st = new StringTokenizer(br.readLine());
-			char op = in.readString().charAt(0);
-			if(op == 'p') {
-				int s = in.readInt();
-				int c = in.readInt();
-				update(start[s] + 1, c);
-				update(end[s] + 1, -c);
+		System.out.println(Arrays.toString(tree));
+		int Q = in.rI();
+		while(Q-- > 0) {
+			int op = in.rI();
+			if(op == 1) {
+				int s = in.rI();
+				int e = in.rI();
+//				update(s, 1);
+//				update(e + 1, -(e-s+1)*(e-s+2)/2);
+				long cnt = 1;
+				for(int i = s; i <= e;i ++) {
+					update(i,1);
+//					update(i+1,-cnt++);
+				}
 			}
-			else {
-				int s = in.readInt();
-				sb.append(get(start[s])).append('\n');
-			}
+			else
+				sb.append(get(in.rI())).append('\n');
 		}
+		System.out.println(Arrays.toString(tree));
 		System.out.println(sb);
 	}
-	
-	public static void dfs(int cur) {
-		start[cur] = cnt++;
-		for(int next : adj[cur])
-			dfs(next);
-		end[cur] = cnt - 1;
-	}
-	
-	public static void update(int idx, int diff) {
+	public static void update(int idx, long value) {
 		while(idx < N + 1) {
-			tree[idx] += diff;
+			tree[idx] += value;
 			idx += (-idx & idx);
 		}
 	}
-	
-	public static int get(int idx) {
-		int acc = 0;
+	public static long get(int idx) {
+		long acc = 0;
 		while(idx > 0) {
 			acc += tree[idx];
-			idx -= (-idx & idx);
+			idx -= -idx & idx;
 		}
 		return acc;
 	}
-	
-	private static class InputReader {
+	private static class IR {
 		private InputStream stream;
-		private byte[] buf = new byte[1024];
-		private int curChar;
-		private int numChars;
-		private SpaceCharFilter filter;
-
-		public InputReader(InputStream stream) {
+		private byte[] b = new byte[1024];
+		private int cC;
+		private int nCs;
+		private SCF fi;
+		public IR(InputStream stream) {
 			this.stream = stream;
 		}
-
-		public int read() {
-			if (numChars == -1) {
+		public int r() {
+			if (nCs == -1)
 				throw new InputMismatchException();
-			}
-			if (curChar >= numChars) {
-				curChar = 0;
+			if (cC >= nCs) {
+				cC = 0;
 				try {
-					numChars = stream.read(buf);
+					nCs = stream.read(b);
 				} catch (IOException e) {
 					throw new InputMismatchException();
 				}
-				if (numChars <= 0) {
+				if (nCs <= 0)
 					return -1;
-				}
 			}
-			return buf[curChar++];
+			return b[cC++];
 		}
-
-		public int readInt() {
-			int c = read();
-			while (isSpaceChar(c)) {
-				c = read();
-			}
+		public int rI() {
+			int c = r();
+			while (isS(c))
+				c = r();
 			int sgn = 1;
 			if (c == '-') {
 				sgn = -1;
-				c = read();
+				c = r();
 			}
 			int res = 0;
 			do {
-				if (c < '0' || c > '9') {
+				if (c < '0' || c > '9')
 					throw new InputMismatchException();
-				}
 				res *= 10;
 				res += c - '0';
-				c = read();
-			} while (!isSpaceChar(c));
+				c = r();
+			} while (!isS(c));
 			return res * sgn;
 		}
-
-		public String readString() {
-			int c = read();
-			while (isSpaceChar(c)) {
-				c = read();
+		public long rL() {
+			int c = r();
+			while (isS(c))
+				c = r();
+			int sgn = 1;
+			if (c == '-') {
+				sgn = -1;
+				c = r();
 			}
-			StringBuilder res = new StringBuilder();
+			long res = 0;
 			do {
-				res.appendCodePoint(c);
-				c = read();
-			} while (!isSpaceChar(c));
-			return res.toString();
+				if (c < '0' || c > '9')
+					throw new InputMismatchException();
+				res *= 10;
+				res += c - '0';
+				c = r();
+			} while (!isS(c));
+			return res * sgn;
 		}
-		public boolean isSpaceChar(int c) {
-			if (filter != null) {
-				return filter.isSpaceChar(c);
-			}
+		public boolean isS(int c) {
+			if (fi != null)
+				return fi.isS(c);
 			return c == ' ' || c == '\n' || c == '\r' || c == '\t' || c == -1;
 		}
-
-		public String next() {
-			return readString();
-		}
-
-		public interface SpaceCharFilter {
-			public boolean isSpaceChar(int ch);
+		public interface SCF {
+			public boolean isS(int ch);
 		}
 	}
 }
