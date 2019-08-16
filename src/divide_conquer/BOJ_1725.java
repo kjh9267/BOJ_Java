@@ -2,15 +2,9 @@ package divide_conquer;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
 
-/** 
- * 
- * @author Junho
- *
- * @see https://www.acmicpc.net/problem/1725
- *
- */
+// https://www.acmicpc.net/problem/1725
+
 
 public class BOJ_1725 {
 	public static int[] data;
@@ -37,11 +31,11 @@ public class BOJ_1725 {
 		int left = mid;
 		int right = mid;
 		int height = data[mid];
-		
+
 		while(start < left || right < end - 1) {
 			int leftHeight = start != left ? Math.min(height, data[left - 1]) : -1;
 			int rightHeight = right != end - 1 ? Math.min(height, data[right + 1]) : -1;
-			
+
 			if(leftHeight > rightHeight) {
 				height = leftHeight;
 				left -= 1;
