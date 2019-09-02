@@ -36,73 +36,52 @@ public class BOJ_17140 {
             if(grid[R][C] == K)
                 return res;
             if(row >= col)
-                sort('r');
+                sort(false);
             else
-                sort('c');
+                sort(true);
             res += 1;
         }
         return -1;
     }
-    public static void sort(char flag){
+    public static void sort(boolean flag) {
         int[][] temp = new int[100][100];
-        if(flag == 'c') {
-            row = 0;
-            for (int i = 0; i < 100; i++) {
-                pq = new PriorityQueue<>();
-                cnts = new HashMap<>();
-                for (int j = 0; j < 100; j++) {
-                    int value = grid[j][i];
-                    if (value == 0)
-                        continue;
-                    if (cnts.containsKey(value))
-                        cnts.put(value, cnts.get(value) + 1);
-                    else
-                        cnts.put(value, 1);
-                }
-                for (int key : cnts.keySet())
-                    pq.offer(new Node(key, cnts.get(key)));
-                int len = pq.size();
-                row = Math.max(row, len * 2);
-                for (int j = 0; j < len * 2; j += 2) {
-                    Node n = pq.poll();
-                    if (j == 100)
-                        break;
+        int end = 0;
+        for (int i = 0; i < 100; i++) {
+            pq = new PriorityQueue<>();
+            cnts = new HashMap<>();
+            for (int j = 0; j < 100; j++) {
+                int value = flag ? grid[j][i] : grid[i][j];
+                if (value == 0)
+                    continue;
+                if (cnts.containsKey(value))
+                    cnts.put(value, cnts.get(value) + 1);
+                else
+                    cnts.put(value, 1);
+            }
+            for (int key : cnts.keySet())
+                pq.offer(new Node(key, cnts.get(key)));
+            int len = pq.size();
+            end = Math.max(end, len * 2);
+            for (int j = 0; j < len * 2; j += 2) {
+                Node n = pq.poll();
+                if (j == 100)
+                    break;
+                if(flag)
                     temp[j][i] = n.num;
-                    if (j + 1 == 100)
-                        break;
-                    temp[j + 1][i] = n.cnt;
-                }
-            }
-        }
-        else{
-            col = 0;
-            for(int i = 0; i < 100; i++) {
-                pq = new PriorityQueue<>();
-                cnts = new HashMap<>();
-                for (int j = 0; j < 100; j++) {
-                    int value = grid[i][j];
-                    if (value == 0)
-                        continue;
-                    if (cnts.containsKey(value))
-                        cnts.put(value, cnts.get(value) + 1);
-                    else
-                        cnts.put(value, 1);
-                }
-                for(int key : cnts.keySet())
-                    pq.offer(new Node(key, cnts.get(key)));
-                int len = pq.size();
-                col = Math.max(col, len * 2);
-                for(int j = 0; j < len * 2; j += 2){
-                    Node n = pq.poll();
-                    if(j == 100)
-                        break;
+                else
                     temp[i][j] = n.num;
-                    if(j + 1 == 100)
-                        break;
+                if (j + 1 == 100)
+                    break;
+                if (flag)
+                    temp[j + 1][i] = n.cnt;
+                else
                     temp[i][j + 1] = n.cnt;
-                }
             }
         }
+        if(flag)
+            row = end;
+        else
+            col = end;
         grid = temp;
     }
     public static class Node implements Comparable<Node>{
