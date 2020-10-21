@@ -32,7 +32,7 @@ public class BOJ_16437 {
         System.out.println(dfs(1));
     }
 
-    public static long dfs(int cur){
+    private static long dfs(int cur){
         if(cur == 0)
             return 0;
 

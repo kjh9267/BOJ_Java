@@ -8,11 +8,16 @@ import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class BOJ_16234 {
-    public static final int[][] DIR = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
-    public static int N, L, R, depth, sum, value;
-    public static int[][] grid;
-    public static boolean[][] visited;
-    public static Stack<Node> stack;
+    private static final int[][] DIR = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+    private static int N;
+    private static int L;
+    private static int R;
+    private static int depth;
+    private static int sum;
+    private static int value;
+    private static int[][] grid;
+    private static boolean[][] visited;
+    private static Stack<Node> stack;
 
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -57,7 +62,7 @@ public class BOJ_16234 {
         System.out.println(res);
     }
 
-    public static void dfs(int x, int y){
+    private static void dfs(int x, int y){
         if(visited[y][x])
             return;
         visited[y][x] = true;
@@ -75,7 +80,7 @@ public class BOJ_16234 {
         }
     }
 
-    public static class Node{
+    private static class Node{
         int x, y;
         public Node(int x, int y){
             this.x = x;

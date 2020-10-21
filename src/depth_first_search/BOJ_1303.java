@@ -7,10 +7,14 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class BOJ_1303 {
-    public static final int[][] DIR = {{0,-1},{1,0},{0,1},{-1,0}};
-    public static int N, M, A, B, cnt;
-    public static char[][] grid;
-    public static boolean[][] visited;
+    private static final int[][] DIR = {{0,-1},{1,0},{0,1},{-1,0}};
+    private static int N;
+    private static int M;
+    private static int A;
+    private static int B;
+    private static int cnt;
+    private static char[][] grid;
+    private static boolean[][] visited;
 
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -45,7 +49,8 @@ public class BOJ_1303 {
         }
         System.out.println(A + " " + B);
     }
-    public static void dfs(int x, int y, char value){
+
+    private static void dfs(int x, int y, char value){
         if(visited[y][x])
             return;
         visited[y][x] = true;

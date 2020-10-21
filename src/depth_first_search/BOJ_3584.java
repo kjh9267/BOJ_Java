@@ -9,7 +9,7 @@ import java.util.StringTokenizer;
 public class BOJ_3584 {
     private static int[] adj;
     private static boolean[] visited;
-    public static int res;
+    private static int res;
 
     public static void main(String[] args) throws Exception{
         StringBuilder sb = new StringBuilder();
@@ -34,7 +34,8 @@ public class BOJ_3584 {
         }
         System.out.print(sb);
     }
-    public static void dfs(int cur){
+
+    private static void dfs(int cur){
         if(visited[cur]) {
             res = cur;
             return;

@@ -7,10 +7,11 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class BOJ_14890 {
-    public static final int[][] DIR = {{1, 0}, {0, 1}};
-    public static int N, L;
-    public static int[][] grid;
-    public static boolean[][] visited;
+    private static final int[][] DIR = {{1, 0}, {0, 1}};
+    private static int N;
+    private static int L;
+    private static int[][] grid;
+    private static boolean[][] visited;
 
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -27,7 +28,8 @@ public class BOJ_14890 {
         }
         System.out.println(solve());
     }
-    public static int solve(){
+
+    private static int solve(){
         int cnt = 0;
         visited = new boolean[N][N];
         for(int row = 0; row < N; row++){
@@ -57,7 +59,8 @@ public class BOJ_14890 {
         }
         return cnt;
     }
-    public static void dfs(int x, int y, int idx, boolean down, int len, int cnt){
+
+    private static void dfs(int x, int y, int idx, boolean down, int len, int cnt){
         if(len == L)
             down = false;
         visited[y][x] = true;

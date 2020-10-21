@@ -11,7 +11,10 @@ import java.util.StringTokenizer;
 public class BOJ_4803 {
     private static final String NEW_LINE = "\n";
     private static ArrayList<Integer>[] adj;
-    private static boolean[] visited, finished, isTree, checked;
+    private static boolean[] visited;
+    private static boolean[] finished;
+    private static boolean[] isTree;
+    private static boolean[] checked;
     private static int[] parent;
 
     public static void main(String[] args) throws Exception{
@@ -76,7 +79,7 @@ public class BOJ_4803 {
         System.out.print(sb.toString());
     }
 
-    public static void dfs(int cur, int prev){
+    private static void dfs(int cur, int prev){
         if(visited[cur]){
             if(finished[cur]) isTree[parent[cur]] = false;
             return;
@@ -90,13 +93,13 @@ public class BOJ_4803 {
         finished[cur] = true;
     }
 
-    public static int find(int x){
+    private static int find(int x){
         if(parent[x] < 0)
             return x;
         return parent[x] = find(parent[x]);
     }
 
-    public static void merge(int x, int y){
+    private static void merge(int x, int y){
         x = find(x);
         y = find(y);
 

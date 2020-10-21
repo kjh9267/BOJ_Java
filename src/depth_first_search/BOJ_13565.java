@@ -5,10 +5,11 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class BOJ_13565 {
-	public static char[][] graph;
-	public static int N, M;
-	public static final int[][] DIR = {{0,-1},{1,0},{0,1},{-1,0}};
-	public static boolean res;
+	private static char[][] graph;
+	private static int N;
+	private static int M;
+	private static final int[][] DIR = {{0,-1},{1,0},{0,1},{-1,0}};
+	private static boolean res;
 	
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -26,8 +27,8 @@ public class BOJ_13565 {
 		
 		System.out.println(res ? "YES" : "NO");
 	}
-	
-	public static void dfs(int x, int y) {
+
+	private static void dfs(int x, int y) {
 		if(y == N - 1)
 			res = true;
 		graph[y][x] = '1';
