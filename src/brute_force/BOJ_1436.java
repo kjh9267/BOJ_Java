@@ -13,6 +13,7 @@ import java.util.Arrays;
  */
 
 public class BOJ_1436 {
+
 	public static void main(String[] args) throws Exception {
 		StringBuilder sb = new StringBuilder();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

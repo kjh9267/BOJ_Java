@@ -11,7 +11,14 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class BOJ_2231 {
-	public static int solve(int target) {
+
+	public static void main(String[] args) throws Exception{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int target = Integer.parseInt(br.readLine());
+		System.out.println(solve(target));
+	}
+
+	private static int solve(int target) {
 		int num;
 		StringBuilder sb;
 		for(int i = 1; i <= 1_000_000; i++) {
@@ -25,11 +32,5 @@ public class BOJ_2231 {
 				return i;
 		}
 		return 0;
-	}
-	
-	public static void main(String[] args) throws Exception{
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int target = Integer.parseInt(br.readLine());
-		System.out.println(solve(target));
 	}
 }
