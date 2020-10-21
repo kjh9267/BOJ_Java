@@ -8,8 +8,11 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class BOJ_14888 {
-    public static int N, max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
-    public static int[] nums, ops;
+    private static int N;
+    private static int max = Integer.MIN_VALUE;
+    private static int min = Integer.MAX_VALUE;
+    private static int[] nums;
+    private static int[] ops;
 
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -29,7 +32,8 @@ public class BOJ_14888 {
         System.out.println(max);
         System.out.println(min);
     }
-    public static void dfs(int depth, int value){
+
+    private static void dfs(int depth, int value){
         if(depth == N){
             max = Math.max(max, value);
             min = Math.min(min, value);

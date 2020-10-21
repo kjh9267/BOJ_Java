@@ -7,10 +7,11 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 
 public class BOJ_1342 {
-    public static int N, res;
-    public static char[] data;
-    public static boolean[] visited;
-    public static HashMap<Character, Integer> cnt;
+    private static int N;
+    private static int res;
+    private static char[] data;
+    private static boolean[] visited;
+    private static HashMap<Character, Integer> cnt;
 
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -33,7 +34,7 @@ public class BOJ_1342 {
         }
         System.out.println(res);
     }
-    public static void dfs(int depth, char prev, char[] s){
+    private static void dfs(int depth, char prev, char[] s){
         if(depth == N && check(s)){
                 res += 1;
                 return;
@@ -52,7 +53,7 @@ public class BOJ_1342 {
         }
 
     }
-    public static boolean check(char[] s){
+    private static boolean check(char[] s){
         for(int i = 0; i < N - 1; i++){
             if(s[i] == s[i + 1])
                 return false;

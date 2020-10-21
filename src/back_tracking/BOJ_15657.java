@@ -6,9 +6,10 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class BOJ_15657 {
-	public static int[] nums;
-	public static int N, M;
-	public static StringBuilder sb;
+	private static int[] nums;
+	private static int N;
+	private static int M;
+	private static StringBuilder sb;
 	
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -27,7 +28,7 @@ public class BOJ_15657 {
 		System.out.print(sb);
 	}
 
-	public static void dfs(int cur, int depth, String s) {
+	private static void dfs(int cur, int depth, String s) {
 		if(depth == M ) {
 			sb.append(s);
 			sb.append('\n');

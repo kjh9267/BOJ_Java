@@ -14,9 +14,10 @@ import java.util.StringTokenizer;
  */
 
 public class BOJ_10819 {
-	public static int res, N;
-	public static boolean[] visited;
-	public static int[] data;
+	private static int res;
+	private static int N;
+	private static boolean[] visited;
+	private static int[] data;
 	
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -30,7 +31,7 @@ public class BOJ_10819 {
 		System.out.println(res);
 	}
 	
-	public static void dfs(int depth, int[] nums) {
+	private static void dfs(int depth, int[] nums) {
 		if(depth == N) {
 			res = Math.max(res, check(nums));
 			return;
@@ -45,7 +46,7 @@ public class BOJ_10819 {
 		}
 	}
 	
-	public static int check(int[] nums) {
+	private static int check(int[] nums) {
 		int sum = 0;
 		for(int i = 0; i < N - 1; i++)
 			sum += Math.abs(nums[i] - nums[i + 1]);

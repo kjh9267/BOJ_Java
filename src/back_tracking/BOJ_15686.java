@@ -8,9 +8,13 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class BOJ_15686 {
-    public static int N, M, cnt, res = Integer.MAX_VALUE;
-    public static char[][] grid;
-    public static ArrayList<Node> chicken, home;
+    private static int N;
+    private static int M;
+    private static int cnt;
+    private static int res = Integer.MAX_VALUE;
+    private static char[][] grid;
+    private static ArrayList<Node> chicken;
+    private static ArrayList<Node> home;
 
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -39,7 +43,8 @@ public class BOJ_15686 {
             dfs(0, 0, i, new Node[i]);
         System.out.println(res);
     }
-    public static void dfs(int depth, int cur, int end, Node[] data){
+
+    private static void dfs(int depth, int cur, int end, Node[] data){
         if(depth == end) {
             res = Math.min(res, check(data));
             return;
@@ -50,7 +55,8 @@ public class BOJ_15686 {
         dfs(depth + 1, cur + 1, end, data);
         dfs(depth, cur + 1, end, data);
     }
-    public static int check(Node[] data){
+
+    private static int check(Node[] data){
         int res = 0;
         for(Node h : home){
             int temp = Integer.MAX_VALUE;
@@ -61,7 +67,8 @@ public class BOJ_15686 {
         }
         return res;
     }
-    public static class Node{
+
+    private static class Node{
         int x, y;
         public Node(int x, int y){
             this.x = x;

@@ -7,9 +7,11 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class BOJ_14501 {
-    public static int N, res;
-    public static int[] time, cost;
-    public static boolean[] visited;
+    private static int N;
+    private static int res;
+    private static int[] time;
+    private static int[] cost;
+    private static boolean[] visited;
 
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -26,7 +28,7 @@ public class BOJ_14501 {
         dfs(0, 0);
         System.out.println(res);
     }
-    public static void dfs(int depth, int value){
+    private static void dfs(int depth, int value){
         if(depth > N)
             return;
         res = Math.max(res, value);

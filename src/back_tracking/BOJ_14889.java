@@ -7,9 +7,11 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class BOJ_14889 {
-    public static int N, res = 1_000_000_000, all;
-    public static int[][] adj;
-    public static boolean[] visited;
+    private static int N;
+    private static int res = 1_000_000_000;
+    private static int all;
+    private static int[][] adj;
+    private static boolean[] visited;
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -29,7 +31,7 @@ public class BOJ_14889 {
         System.out.println(res);
     }
 
-    public static void dfs(int cur, int depth) {
+    private static void dfs(int cur, int depth) {
         if (depth == N / 2) {
             check();
             return;
@@ -43,7 +45,7 @@ public class BOJ_14889 {
         }
     }
 
-    public static void check() {
+    private static void check() {
         int sumA = 0, sumB = 0;
         for (int i = 0; i < N; i++) {
             if (visited[i]) {

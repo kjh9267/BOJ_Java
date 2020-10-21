@@ -13,8 +13,8 @@ import java.io.InputStreamReader;
 
 
 public class BOJ_2661 {
-	public static String res;
-	public static int N;
+	private static String res;
+	private static int N;
 	
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -25,7 +25,7 @@ public class BOJ_2661 {
 		System.out.println(res);
 	}
 	
-	public static boolean dfs(int cur, String s) {
+	private static boolean dfs(int cur, String s) {
 		if(s.length() == N) {
 			res = s;
 			return true;
@@ -37,7 +37,7 @@ public class BOJ_2661 {
 		return false;
 	}
 	
-	public static boolean check(String s) {
+	private static boolean check(String s) {
 		int len = s.length();
 		int half = len >> 1;
 
