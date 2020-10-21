@@ -8,7 +8,7 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class BOJ_1963 {
-	public static boolean[] isPrime;
+	private static boolean[] isPrime;
 	
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -29,8 +29,8 @@ public class BOJ_1963 {
 		}
 		System.out.print(sb);
 	}
-	
-	public static void init() {
+
+	private static void init() {
 		Arrays.fill(isPrime, true);
 		isPrime[1] = false;
 
@@ -39,15 +39,15 @@ public class BOJ_1963 {
 				for(int j = i*2; j < 10000; j+=i)
 					isPrime[j] = false;
 	}
-	
-	public static void check(int cur, int next, int[] visited, Queue<Integer> queue) {
+
+	private static void check(int cur, int next, int[] visited, Queue<Integer> queue) {
 		if(isPrime[next] && visited[next] == -1) {
 			queue.offer(next);
 			visited[next] = visited[cur] + 1;
 		}
 	}
-	
-	public static int bfs(int from, int to) {
+
+	private static int bfs(int from, int to) {
 		Queue<Integer> queue = new LinkedList<>();
 		int[] visited = new int[10000];
 		queue.offer(from);

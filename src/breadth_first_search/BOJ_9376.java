@@ -8,8 +8,11 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class BOJ_9376 {
-	public static int H, W, cnt, door;
-	public static final int[][] DIR = {{0,-1},{0,1},{1,0},{-1,0}};
+	private static int H;
+	private static int W;
+	private static int cnt;
+	private static int door;
+	private static final int[][] DIR = {{0,-1},{0,1},{1,0},{-1,0}};
 	
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -63,8 +66,8 @@ public class BOJ_9376 {
 		}
 		System.out.print(sb);
 	}
-	
-	public static class Node{
+
+	private static class Node{
 		int x;
 		int y;
 		
@@ -73,8 +76,8 @@ public class BOJ_9376 {
 			this.y = y;
 		}
 	}
-	
-	public static void bfs(int startX, int startY, char[][] graph, int[][] node, int[][] res) {
+
+	private static void bfs(int startX, int startY, char[][] graph, int[][] node, int[][] res) {
 		Queue<Node> queue = new LinkedList<>();
 		int[][] visited = new int[H + 2][W + 2];
 		for(int i = 0; i < H + 2; i++)

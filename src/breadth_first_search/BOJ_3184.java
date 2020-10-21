@@ -7,10 +7,13 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class BOJ_3184 {
-	public static char[][] graph;
-	public static boolean[][] visited;
-	public static final int[][] DIR = {{0,-1},{1,0},{0,1},{-1,0}};
-	public static int R, C, O, V;
+	private static char[][] graph;
+	private static boolean[][] visited;
+	private static final int[][] DIR = {{0,-1},{1,0},{0,1},{-1,0}};
+	private static int R;
+	private static int C;
+	private static int O;
+	private static int V;
 	
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -30,8 +33,8 @@ public class BOJ_3184 {
 		
 		System.out.println(O + " " + V);
 	}
-	
-	public static class Node{
+
+	private static class Node{
 		int x;
 		int y;
 		public Node(int x, int y) {
@@ -39,8 +42,8 @@ public class BOJ_3184 {
 			this.y = y;
 		}
 	}
-	
-	public static void bfs(Node n) {
+
+	private static void bfs(Node n) {
 		int o = 0;
 		int v = 0;
 		Queue<Node> queue = new LinkedList<>();

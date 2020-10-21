@@ -9,7 +9,7 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class BOJ_16397 {
-    public static final int MAX = 99_999;
+    private static final int MAX = 99_999;
 
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -22,7 +22,7 @@ public class BOJ_16397 {
         System.out.println(res == -1 ? "ANG" : res);
     }
 
-    public static int bfs(int N, int T, int G){
+    private static int bfs(int N, int T, int G){
         Queue<Integer> queue = new LinkedList<>();
         boolean[] visited = new boolean[MAX + 1];
         queue.offer(N);
@@ -57,7 +57,7 @@ public class BOJ_16397 {
         return -1;
     }
 
-    public static int tempToNxt(int num){
+    private static int tempToNxt(int num){
         if(num == 0)
             return 0;
         int n = 1;

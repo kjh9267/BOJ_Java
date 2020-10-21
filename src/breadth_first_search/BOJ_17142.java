@@ -7,11 +7,14 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 public class BOJ_17142 {
-    public static final int MAX = Integer.MAX_VALUE;
-    public static final int[][] DIR = {{1, 0}, {0, 1}, {-1, 0}, {0 ,-1}};
-    public static int N, M, vCnt, res = MAX;
-    public static int[][] grid;
-    public static ArrayList<Node> virus;
+    private static final int MAX = Integer.MAX_VALUE;
+    private static final int[][] DIR = {{1, 0}, {0, 1}, {-1, 0}, {0 ,-1}};
+    private static int N;
+    private static int M;
+    private static int vCnt;
+    private static int res = MAX;
+    private static int[][] grid;
+    private static ArrayList<Node> virus;
 
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -41,7 +44,8 @@ public class BOJ_17142 {
             System.out.println(res == MAX ? -1 : res);
         }
     }
-    public static void dfs(int cur, int depth, Node[] data){
+
+    private static void dfs(int cur, int depth, Node[] data){
         if(depth == M) {
             res = Math.min(res, bfs(data));
             return;
@@ -51,7 +55,8 @@ public class BOJ_17142 {
             dfs(idx + 1,depth + 1, data);
         }
     }
-    public static int bfs(Node[] data){
+
+    private static int bfs(Node[] data){
         Queue<Node> queue = new LinkedList<>();
         int[][] visited = new int[N][N];
         for(int i = 0; i < N; i++)
@@ -89,7 +94,8 @@ public class BOJ_17142 {
         }
         return cnt;
     }
-    public static class Node{
+
+    private static class Node{
         int x, y;
         public Node(int x, int y){
             this.x = x;

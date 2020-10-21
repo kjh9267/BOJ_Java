@@ -16,11 +16,13 @@ import java.util.StringTokenizer;
  */
 
 public class BOJ_16469 {
-	public static int R, C, res;
-	public static char[][] grid;
-	public static Queue<Node> queue = new LinkedList<Node>();
-	public static int[][] visited;
-	public static final int[][] DIR = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+	private static int R;
+	private static int C;
+	private static int res;
+	private static char[][] grid;
+	private static Queue<Node> queue = new LinkedList<Node>();
+	private static int[][] visited;
+	private static final int[][] DIR = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
 	
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -43,8 +45,8 @@ public class BOJ_16469 {
 		int cnt = bfs();
 		System.out.println(cnt == -1 ? -1 : cnt + " " + res);
 	}
-	
-	public static class Node{
+
+	private static class Node{
 		int x, y, id;
 		public Node(int x, int y, int id) {
 			this.x = x;
@@ -52,8 +54,8 @@ public class BOJ_16469 {
 			this.id = id;
 		}
 	}
-	
-	public static int bfs() {
+
+	private static int bfs() {
 		int cnt = 0;
 		boolean key = false;
 		while(!queue.isEmpty()) {

@@ -7,11 +7,17 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 public class BOJ_13460 {
-    public static final int[][] DIR = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
-    public static int N, M, nrx, nry, nbx, nby;
-    public static char[][] grid;
-    public static HashSet<String> visited;
-    public static Queue<Node> queue;
+
+    private static final int[][] DIR = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+    private static int N;
+    private static int M;
+    private static int nrx;
+    private static int nry;
+    private static int nbx;
+    private static int nby;
+    private static char[][] grid;
+    private static HashSet<String> visited;
+    private static Queue<Node> queue;
 
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -42,7 +48,7 @@ public class BOJ_13460 {
         System.out.println(bfs());
     }
 
-    public static int bfs(){
+    private static int bfs(){
         int cnt = 0;
         while (!queue.isEmpty()){
             int len = queue.size();
@@ -106,7 +112,7 @@ public class BOJ_13460 {
         return -1;
     }
 
-    public static char[][] copy(char[][] grid){
+    private static char[][] copy(char[][] grid){
         char[][] res = new char[N][M];
         for(int row = 0; row < N; row++)
             for(int col = 0; col < M; col++)
@@ -114,7 +120,7 @@ public class BOJ_13460 {
         return res;
     }
 
-    public static class Node{
+    private static class Node{
         int rx, ry, bx, by;
         char[][] grid;
         public Node(int rx, int ry, int bx, int by, char[][] grid){

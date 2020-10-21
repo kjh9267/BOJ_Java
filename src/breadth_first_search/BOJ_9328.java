@@ -17,11 +17,13 @@ import java.util.StringTokenizer;
 
 
 public class BOJ_9328 {
-	public static int h, w, res;
-	public static char[][] graph;
-	public static int[][] visited;
-	public static boolean[][] document;
-	public static final int[][] DIR = {{0,-1},{1,0},{0,1},{-1,0}};
+	private static int h;
+	private static int w;
+	private static int res;
+	private static char[][] graph;
+	private static int[][] visited;
+	private static boolean[][] document;
+	private static final int[][] DIR = {{0,-1},{1,0},{0,1},{-1,0}};
 	
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -57,19 +59,20 @@ public class BOJ_9328 {
 		}
 		System.out.print(sb);
 	}
-	
-	public static class Node{
+
+	private static class Node{
 		int x;
 		int y;
 		int key;
+
 		public Node(int x, int y, int key) {
 			this.x = x;
 			this.y = y;
 			this.key = key;
 		}
 	}
-	
-	public static void bfs(int x, int y, int key) {		
+
+	private static void bfs(int x, int y, int key) {
 		Queue<Node> queue = new LinkedList<>();
 		queue.offer(new Node(x,y,key));
 		visited[y][x] = key;
@@ -100,23 +103,23 @@ public class BOJ_9328 {
 			}
 		}
 	}
-	
-	public static int keyToNum(char key) {
+
+	private static int keyToNum(char key) {
 		return key - 'a' + 1;
 	}
-	
-	public static boolean hasKey(char door, int key) {
+
+	private static boolean hasKey(char door, int key) {
 		int toKey = door - 'A' + 1;
 		if((key & (1 << toKey)) == 0)
 			return false;
 		return true;
 	}
-	
-	public static boolean isKey(char c) {
+
+	private static boolean isKey(char c) {
 		return 0 <= c - 'a' && c - 'a' < 26 ? true : false;
 	}
-	
-	public static boolean isDoor(char c) {
+
+	private static boolean isDoor(char c) {
 		return 0 <= c - 'A' && c - 'A' < 26 ? true : false;
 	}
 }

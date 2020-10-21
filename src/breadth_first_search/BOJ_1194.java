@@ -15,9 +15,10 @@ import java.util.StringTokenizer;
  */
 
 public class BOJ_1194 {
-	public static int N, M;
-	public static char[][] graph;
-	public static final int[][] DIR = {{0,-1},{1,0},{0,1},{-1,0}};
+	private static int N;
+	private static int M;
+	private static char[][] graph;
+	private static final int[][] DIR = {{0,-1},{1,0},{0,1},{-1,0}};
 	
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -36,8 +37,8 @@ public class BOJ_1194 {
 					System.exit(0);
 				}
 	}
-	
-	public static class Node{
+
+	private static class Node{
 		int x;
 		int y;
 		int key;
@@ -47,8 +48,8 @@ public class BOJ_1194 {
 			this.key = key;
 		}
 	}
-	
-	public static int bfs(int x, int y) {
+
+	private static int bfs(int x, int y) {
 		int cnt = 0;
 		Queue<Node> queue = new LinkedList<>();
 		queue.offer(new Node(x, y, 0));

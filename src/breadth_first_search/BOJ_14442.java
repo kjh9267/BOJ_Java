@@ -7,8 +7,8 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class BOJ_14442 {
-	public static char[][] graph;
-	public static final int[][] DIR = { { 0, -1 }, { 1, 0 }, { 0, 1 }, { -1, 0 } };
+	private static char[][] graph;
+	private static final int[][] DIR = { { 0, -1 }, { 1, 0 }, { 0, 1 }, { -1, 0 } };
 
 	public static void main(String[] args) throws Exception {
 
@@ -31,10 +31,11 @@ public class BOJ_14442 {
 		System.out.println(bfs(N, M, K));
 	}
 
-	public static class Node {
+	private static class Node {
 		int x;
 		int y;
 		int k;
+
 		public Node(int x, int y, int k) {
 			this.x = x;
 			this.y = y;
@@ -42,7 +43,7 @@ public class BOJ_14442 {
 		}
 	}
 
-	public static int bfs(int N, int M, int K) {
+	private static int bfs(int N, int M, int K) {
 		Queue<Node> queue = new LinkedList<>();
 		int[][] visited = new int[N][M];
 		queue.offer(new Node(0, 0, 1));

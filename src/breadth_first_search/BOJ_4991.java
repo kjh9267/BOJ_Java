@@ -16,10 +16,12 @@ import java.util.StringTokenizer;
  */
 
 public class BOJ_4991 {
-	public static int W, H, num;
-	public static char[][] graph;
-	public static int[][] dust;
-	public static final int[][] DIR = {{1,0},{0,1},{-1,0},{0,-1}};
+	private static int W;
+	private static int H;
+	private static int num;
+	private static char[][] graph;
+	private static int[][] dust;
+	private static final int[][] DIR = {{1,0},{0,1},{-1,0},{0,-1}};
 	
 	public static void main(String[] args) throws Exception{
 		StringBuilder sb = new StringBuilder();
@@ -53,8 +55,8 @@ public class BOJ_4991 {
 		}
 		System.out.print(sb);
 	}
-	
-	public static class Node{
+
+	private static class Node{
 		int x;
 		int y;
 		int dust;
@@ -65,9 +67,8 @@ public class BOJ_4991 {
 			this.dust = dust;
 		}
 	}
-	
-	
-	public static int bfs(int x, int y) {
+
+	private static int bfs(int x, int y) {
 		Queue<Node> queue = new LinkedList<>();
 		HashMap<Integer,Integer>[][] visited = new HashMap[H][W];
 		

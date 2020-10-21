@@ -14,8 +14,8 @@ import java.util.Scanner;
  */
 
 public class BOJ_1107 {
-	public static boolean[] buttons = new boolean[10];
-	public static int[] visited = new int[1_000_001];
+	private static boolean[] buttons = new boolean[10];
+	private static int[] visited = new int[1_000_001];
 
 	public static void main(String[] args) throws Exception {
 		Scanner sc = new Scanner(System.in);
@@ -32,7 +32,7 @@ public class BOJ_1107 {
 		System.out.println(bfs(N));
 	}
 
-	public static class Num {
+	private static class Num {
 		int num;
 		int cnt;
 
@@ -42,7 +42,7 @@ public class BOJ_1107 {
 		}
 	}
 
-	public static Queue<Integer> numGenerator() {
+	private static Queue<Integer> numGenerator() {
 		Queue<Integer> queue = new LinkedList<>();
 		queue.add(100);
 		for (int num = 0; num < 1_000_000; num++) {
@@ -76,7 +76,7 @@ public class BOJ_1107 {
 		return queue;
 	}
 
-	public static boolean check(int num) {
+	private static boolean check(int num) {
 		int len = (num + "").toString().length();
 		for (int i = 1; i <= len; i++) {
 			int n = (num % (int) Math.pow(10, i)) / ((int) Math.pow(10,i) / 10);
@@ -87,7 +87,7 @@ public class BOJ_1107 {
 		return true;
 	}
 
-	public static int bfs(int N) {
+	private static int bfs(int N) {
 		int[] diff = {-1, 1};
 		Queue<Integer> queue = numGenerator();
 		visited[100] = 0;

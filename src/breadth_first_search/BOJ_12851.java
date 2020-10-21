@@ -9,7 +9,21 @@ import java.util.StringTokenizer;
 
 public class BOJ_12851 {
 
-	public static final int MAX = 100_001;
+	private static final int MAX = 100_001;
+
+	public static void main(String args[]) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		int N = Integer.parseInt(st.nextToken());
+		int M = Integer.parseInt(st.nextToken());
+		int[] graph = new int[MAX];
+
+		int[] res = bfs(graph, N, M);
+
+		System.out.println(res[0]);
+		System.out.println(res[1]);
+
+	}
 
 	public static int[] bfs(int[] graph, int N, int M) {
 
@@ -54,19 +68,5 @@ public class BOJ_12851 {
 			}
 		}
 		return new int[] { time, path };
-	}
-
-	public static void main(String args[]) throws Exception {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		int N = Integer.parseInt(st.nextToken());
-		int M = Integer.parseInt(st.nextToken());
-		int[] graph = new int[MAX];
-
-		int[] res = bfs(graph, N, M);
-
-		System.out.println(res[0]);
-		System.out.println(res[1]);
-
 	}
 }

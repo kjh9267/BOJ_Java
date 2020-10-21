@@ -7,8 +7,9 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 public class BOJ_12100 {
-    public static final int[][] DIR = {{0, -1}, {1, 0}, {0, 1}, {-1, 0}};
-    public static int N, res;
+    private static final int[][] DIR = {{0, -1}, {1, 0}, {0, 1}, {-1, 0}};
+    private static int N;
+    private static int res;
 
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -24,7 +25,8 @@ public class BOJ_12100 {
         bfs(grid);
         System.out.println(res);
     }
-    public static void bfs(int[][] grid){
+
+    private static void bfs(int[][] grid){
         Queue<int[][]> queue = new LinkedList<>();
         HashSet<String> visited = new HashSet<>();
         queue.add(grid);
@@ -51,7 +53,8 @@ public class BOJ_12100 {
             }
         }
     }
-    public static int[][] check(int[][] grid, int idx){
+
+    private static int[][] check(int[][] grid, int idx){
         int[][] temp = new int[N][N];
         boolean[][] add = new boolean[N][N];
 
@@ -98,7 +101,8 @@ public class BOJ_12100 {
         }
         return temp;
     }
-    public static int[][] go(int x, int y, int[][] temp, int idx, boolean[][] add){
+
+    private static int[][] go(int x, int y, int[][] temp, int idx, boolean[][] add){
         while(true){
             int xx = x + DIR[idx][0];
             int yy = y + DIR[idx][1];
@@ -119,7 +123,8 @@ public class BOJ_12100 {
         }
         return temp;
     }
-    public static void maxCheck(int[][] tmp){
+
+    private static void maxCheck(int[][] tmp){
         for(int row = 0; row < N; row++){
             for(int col = 0; col < N; col++){
                 res = Math.max(res, tmp[row][col]);

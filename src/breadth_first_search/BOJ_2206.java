@@ -32,7 +32,7 @@ public class BOJ_2206 {
 
     }
 
-    public static int bfs(int N, int M, int[][] grid) {
+    private static int bfs(int N, int M, int[][] grid) {
         Queue<Node> queue = new LinkedList<>();
         queue.offer(new Node(0, 0, 0));
 

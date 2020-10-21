@@ -25,20 +25,49 @@ public class BOJ_10026 {
 	private static int[] dx = { 0, 1, 0, -1 };
 	private static int[] dy = { -1, 0, 1, 0 };
 
-	public static class Point {
-		int x;
-		int y;
+	public static void main(String[] args) throws Exception {
+		br = new BufferedReader(new InputStreamReader(System.in));
+		N = Integer.parseInt(br.readLine());
+		graph = new char[N][N];
+		graph2 = new char[N][N];
 
+		StringBuilder sb = new StringBuilder();
+
+		for (int i = 0; i < N; i++) {
+			graph[i] = br.readLine().toCharArray();
+		}
+
+		for(int i = 0; i < N; i++) {
+			for(int j = 0; j < N; j++) {
+				if(graph[i][j] == 'R') {
+					graph2[i][j] = 'G';
+				}
+				else {
+					graph2[i][j] = graph[i][j];
+				}
+			}
+		}
+
+		sb.append(check(graph)).append("\n");
+		sb.append(check(graph2)).append("\n");
+
+		System.out.println(sb.toString());
+	}
+	private static class Point {
+		int x;
+
+		int y;
 		public Point(int x, int y) {
 			this.x = x;
 			this.y = y;
 		}
+
 	}
 
-	public static int check(char[][] graph) {
+	private static int check(char[][] graph) {
 		int cnt = 0;
 		visited = new boolean[N][N];
-			
+
 		for (int i = 0; i < N; i++) {
 			Arrays.fill(visited[i], false);
 		}
@@ -54,7 +83,7 @@ public class BOJ_10026 {
 		return cnt;
 	}
 
-	public static void bfs(int x, int y, char[][] graph) {
+	private static void bfs(int x, int y, char[][] graph) {
 		Queue<Point> queue = new LinkedList<>();
 		queue.offer(new Point(x, y));
 		visited[y][x] = true;
@@ -74,35 +103,6 @@ public class BOJ_10026 {
 				}
 			}
 		}
-	}
-
-	public static void main(String[] args) throws Exception {
-		br = new BufferedReader(new InputStreamReader(System.in));
-		N = Integer.parseInt(br.readLine());
-		graph = new char[N][N];
-		graph2 = new char[N][N];
-		
-		StringBuilder sb = new StringBuilder();
-
-		for (int i = 0; i < N; i++) {
-			graph[i] = br.readLine().toCharArray();
-		}
-		
-		for(int i = 0; i < N; i++) {
-			for(int j = 0; j < N; j++) {
-				if(graph[i][j] == 'R') {
-					graph2[i][j] = 'G';
-				}
-				else {
-					graph2[i][j] = graph[i][j];
-				}
-			}
-		}
-		
-		sb.append(check(graph)).append("\n");
-		sb.append(check(graph2)).append("\n");
-		
-		System.out.println(sb.toString());
 	}
 
 }
