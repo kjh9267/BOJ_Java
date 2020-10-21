@@ -12,10 +12,14 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class BOJ_1939 {
-	public static int N, M, source, sink, MAX = 0;
-	public static ArrayList<Node>[] graph;
-	public static boolean[] visited;
-	public static boolean flag;
+	private static int N;
+	private static int M;
+	private static int source;
+	private static int sink;
+	private static int MAX = 0;
+	private static ArrayList<Node>[] graph;
+	private static boolean[] visited;
+	private static boolean flag;
 	
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -42,8 +46,8 @@ public class BOJ_1939 {
 		
 		System.out.println(binarySearch());
 	}
-	
-	public static class Node{
+
+	private static class Node{
 		int next;
 		int cost;
 		public Node(int next, int cost) {
@@ -51,8 +55,8 @@ public class BOJ_1939 {
 			this.cost = cost;
 		}
 	}
-	
-	public static int binarySearch() {
+
+	private static int binarySearch() {
 		int lo = 1;
 		int hi = MAX + 1;
 		
@@ -69,8 +73,8 @@ public class BOJ_1939 {
 		}
 		return lo;
 	}
-	
-	public static void dfs(int cur, int cost) {
+
+	private static void dfs(int cur, int cost) {
 		if(cur == sink) {
 			flag = true;
 			return;

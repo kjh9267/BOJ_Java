@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class BOJ_2343 {
+
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
@@ -22,7 +23,7 @@ public class BOJ_2343 {
 		System.out.println(binary_search(N, M, arr, max));
 	}
 
-	public static long binary_search(int N, int M, int[] arr, long max) {
+	private static long binary_search(int N, int M, int[] arr, long max) {
 		long res = 0;
 		long left = 1;
 		long right = max;
@@ -55,7 +56,7 @@ public class BOJ_2343 {
 		return res;
 	}
 
-	public static boolean possible(long mid, int[] arr, int N) {
+	private static boolean possible(long mid, int[] arr, int N) {
 		for (int i = 0; i < N; i++) {
 			if (mid < arr[i])
 				return false;

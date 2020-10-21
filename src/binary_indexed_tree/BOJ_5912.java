@@ -14,8 +14,10 @@ import java.util.StringTokenizer;
  */
 
 public class BOJ_5912 {
-	public static int N;
-	public static int[] tree, res;
+	private static int N;
+	private static int[] tree;
+	private static int[] res;
+
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
@@ -36,13 +38,15 @@ public class BOJ_5912 {
 		Arrays.sort(res);
 		System.out.println(res[N / 2]);
 	}
-	public static void update(int idx, int diff) {
+
+	private static void update(int idx, int diff) {
 		while(idx < N + 1) {
 			tree[idx] += diff;
 			idx += (-idx & idx);
 		}
 	}
-	public static int get(int idx) {
+
+	private static int get(int idx) {
 		int acc = 0;
 		while(idx > 0) {
 			acc += tree[idx];
@@ -50,4 +54,5 @@ public class BOJ_5912 {
 		}
 		return acc;
 	}
+
 }

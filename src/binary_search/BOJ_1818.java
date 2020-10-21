@@ -13,8 +13,9 @@ import java.util.StringTokenizer;
  */
 
 public class BOJ_1818 {
-	public static int[] seq, tempSeq;
-	public static int N;
+	private static int[] seq;
+	private static int[] tempSeq;
+	private static int N;
 	
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -28,8 +29,8 @@ public class BOJ_1818 {
 				
 		System.out.println(N - solve());
 	}
-	
-	public static int solve() {
+
+	private static int solve() {
 		int pointer = 0;
 		tempSeq[0] = seq[0];
 		
@@ -47,7 +48,7 @@ public class BOJ_1818 {
 		return pointer + 1;
 	}
 
-	public static int binary_search(int target, int hi) {
+	private static int binary_search(int target, int hi) {
 		int lo = -1;
 
 		while(lo + 1 < hi) {
@@ -60,4 +61,5 @@ public class BOJ_1818 {
 		}
 		return hi;
 	}
+
 }

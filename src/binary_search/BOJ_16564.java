@@ -14,7 +14,8 @@ import java.util.StringTokenizer;
  */
 
 public class BOJ_16564 {
-	public static int[] levels;
+
+	private static int[] levels;
 	
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -29,8 +30,8 @@ public class BOJ_16564 {
 		
 		System.out.println(binarySearch(N, K));
 	}
-	
-	public static long binarySearch(int N, int K) {
+
+	private static long binarySearch(int N, int K) {
 		long lo = 1;
 		long hi = 1_000_000_001;
 		

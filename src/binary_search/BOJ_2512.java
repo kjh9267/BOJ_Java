@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class BOJ_2512 {
+
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int N = Integer.parseInt(br.readLine());
@@ -21,8 +22,8 @@ public class BOJ_2512 {
 		
 		System.out.println(binary_search(N,M,max,arr));
 	}
-	
-	public static int binary_search(int N, int M, int max, int[] arr) {
+
+	private static int binary_search(int N, int M, int max, int[] arr) {
 		int res = 0;
 		int mid = 0;
 		int left = 1;

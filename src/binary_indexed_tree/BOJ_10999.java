@@ -13,8 +13,9 @@ import java.util.StringTokenizer;
  */
 
 public class BOJ_10999 {
-	public static int N;
-	public static long[] aTree, mTree;
+	private static int N;
+	private static long[] aTree;
+	private static long[] mTree;
 	
 	public static void main(String[] args) throws Exception{
 		StringBuilder sb = new StringBuilder();
@@ -46,21 +47,21 @@ public class BOJ_10999 {
 		}
 		System.out.println(sb);
 	}
-	
-	public static void rangeUpdate(int l, int r, long diff) {
+
+	private static void rangeUpdate(int l, int r, long diff) {
 		update(l, diff, -(l - 1) * diff);
 		update(r + 1, -diff, r * diff);
 	}
-	
-	public static void update(int idx, long mDiff, long aDiff) {
+
+	private static void update(int idx, long mDiff, long aDiff) {
 		while(idx < N + 1) {
 			mTree[idx] += mDiff;
 			aTree[idx] += aDiff;
 			idx += (-idx & idx);
 		}
 	}
-	
-	public static long sum(int idx) {
+
+	private static long sum(int idx) {
 		long a = 0, m = 0;
 		int i = idx;
 		while(i > 0) {

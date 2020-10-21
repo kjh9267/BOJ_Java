@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class BOJ_2110 {
+
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
@@ -20,8 +21,8 @@ public class BOJ_2110 {
 		Arrays.sort(homes);
 		System.out.println(binary_search(N, C, homes));
 	}
-	
-	public static int binary_search(int N, int C, int[] homes) {
+
+	private static int binary_search(int N, int C, int[] homes) {
 		int res = 0;
 		int left = 1;
 		int right = homes[N] - homes[1];

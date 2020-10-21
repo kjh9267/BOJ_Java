@@ -12,7 +12,7 @@ public class BOJ_1300 {
 		System.out.println(binary_search(N,K));
 	}
 	
-	public static int binary_search(int N, int K) {
+	private static int binary_search(int N, int K) {
 		int left = 1;
 		int right = K;
 		int res = 1;

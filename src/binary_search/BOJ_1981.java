@@ -14,11 +14,13 @@ import java.util.StringTokenizer;
  */
 
 public class BOJ_1981 {
-	public static int[][] grid;
-	public static int N, MAX = -1, MIN = 200;
-	public static final int[][] DIR = {{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
-	public static boolean[][] visited;
-	public static boolean res;
+	private static int[][] grid;
+	private static int N;
+	private static int MAX = -1;
+	private static int MIN = 200;
+	private static final int[][] DIR = {{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
+	private static boolean[][] visited;
+	private static boolean res;
 	
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -37,8 +39,8 @@ public class BOJ_1981 {
 		}
 		System.out.println(binarySearch());
 	}
-	
-	public static int binarySearch() {
+
+	private static int binarySearch() {
 		int lo = -1;
 		int hi = MAX - MIN;
 		
@@ -51,8 +53,8 @@ public class BOJ_1981 {
 		}
 		return hi;
 	}
-	
-	public static boolean check(int value) {
+
+	private static boolean check(int value) {
 		res = false;
 		for(int min = MIN; min <= MAX - value; min++) {
 			visited = new boolean[N][N];
@@ -69,8 +71,8 @@ public class BOJ_1981 {
 		}
 		return res;
 	}
-	
-	public static void dfs(int x, int y) {
+
+	private static void dfs(int x, int y) {
 		if(x == N - 1 && y == N - 1) {
 			res = true;
 			return;

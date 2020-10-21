@@ -14,7 +14,7 @@ import java.util.StringTokenizer;
  */
 
 public class BOJ_6159 {
-	public static int[] data;
+	private static int[] data;
 	
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -34,8 +34,8 @@ public class BOJ_6159 {
 		}
 		System.out.println(res);
 	}
-	
-	public static int binarySearch(int cur, int N, int S, int lo) {
+
+	private static int binarySearch(int cur, int N, int S, int lo) {
 		int hi = N;
 		
 		while(lo + 1 < hi) {

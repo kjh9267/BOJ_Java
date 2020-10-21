@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class BOJ_15732 {
+
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
@@ -23,8 +24,8 @@ public class BOJ_15732 {
 		
 		System.out.println(binary_search(N, rules, D));
 	}
-	
-	public static class Rule{
+
+	private static class Rule{
 		int A, B, C;
 		
 		public Rule(int A, int B, int C) {
@@ -33,8 +34,8 @@ public class BOJ_15732 {
 			this.C = C;
 		}
 	}
-	
-	public static int binary_search(int N, Rule[] rules, int D) {
+
+	private static int binary_search(int N, Rule[] rules, int D) {
 		int res = 0;
 		int left = 1;
 		int right = N;

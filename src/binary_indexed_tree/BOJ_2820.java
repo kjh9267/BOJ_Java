@@ -15,9 +15,14 @@ import java.util.StringTokenizer;
  */
 
 public class BOJ_2820 {
-	public static int N, cnt = 1;
-	public static int[] tree, data, start, end, temp;
-	public static ArrayList<Integer>[] adj;
+	private static int N;
+	private static int cnt = 1;
+	private static int[] tree;
+	private static int[] data;
+	private static int[] start;
+	private static int[] end;
+	private static int[] temp;
+	private static ArrayList<Integer>[] adj;
 	
 	public static void main(String[] args) throws Exception{
 		StringBuilder sb = new StringBuilder();
@@ -69,22 +74,22 @@ public class BOJ_2820 {
 		}
 		System.out.println(sb);
 	}
-	
-	public static void dfs(int cur) {
+
+	private static void dfs(int cur) {
 		start[cur] = cnt++;
 		for(int next : adj[cur])
 			dfs(next);
 		end[cur] = cnt - 1;
 	}
-	
-	public static void update(int idx, int diff) {
+
+	private static void update(int idx, int diff) {
 		while(idx < N + 1) {
 			tree[idx] += diff;
 			idx += (-idx & idx);
 		}
 	}
-	
-	public static int get(int idx) {
+
+	private static int get(int idx) {
 		int acc = 0;
 		while(idx > 0) {
 			acc += tree[idx];

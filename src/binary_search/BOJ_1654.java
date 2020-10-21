@@ -13,6 +13,7 @@ import java.util.StringTokenizer;
  */
 
 public class BOJ_1654 {
+
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
@@ -29,8 +30,8 @@ public class BOJ_1654 {
 		}
 		System.out.println(binary_search(N, K, max, arr));
 	}
-	
-	public static long binary_search(int N, int K, long max, long[] arr) {
+
+	private static long binary_search(int N, int K, long max, long[] arr) {
 		long lo = 1;
 		long hi = max + 1;
 		long mid;
