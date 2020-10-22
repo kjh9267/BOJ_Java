@@ -1,15 +1,16 @@
-package string_handing;
+package string_handling;
 
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayDeque;
-import java.util.Arrays;
-import java.util.HashMap;
 
 public class BOJ_9935 {
-	public static int bomb_len, str_len, pointer;
-	public static char[] str, bomb, res;
+	private static int bomb_len;
+	private static int str_len;
+	private static int pointer;
+	private static char[] str;
+	private static char[] bomb;
+	private static char[] res;
 	
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -34,15 +35,15 @@ public class BOJ_9935 {
 		
 		System.out.println(pointer == 0 ? "FRULA" : sb);
 	}
-	
-	public static boolean check (int index) {
+
+	private static boolean check (int index) {
 		if(str[index] == bomb[bomb_len - 1] && pointer >= bomb_len)
 			if(isBomb())
 				return true;
 		return false;
 	}
-	
-	public static boolean isBomb() {
+
+	private static boolean isBomb() {
 		for(int i = 0, j = pointer - bomb_len; i < bomb_len; i++, j++)
 			if(bomb[i] != res[j])
 				return false;

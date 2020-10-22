@@ -1,4 +1,4 @@
-package string_handing;
+package string_handling;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -12,7 +12,8 @@ import java.io.InputStreamReader;
  */
 
 public class BOJ_10173 {
-	public static final String END = "EOI", TARGET = "NEMO";
+	private static final String END = "EOI";
+	private static final String TARGET = "NEMO";
 	
 	public static void main(String[] args) throws Exception{
 		StringBuilder sb = new StringBuilder();

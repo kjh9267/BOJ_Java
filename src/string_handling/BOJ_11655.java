@@ -1,4 +1,4 @@
-package string_handing;
+package string_handling;
 
 // https://www.acmicpc.net/problem/11655
 

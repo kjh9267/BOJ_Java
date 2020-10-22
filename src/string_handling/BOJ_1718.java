@@ -1,4 +1,4 @@
-package string_handing;
+package string_handling;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -12,7 +12,7 @@ public class BOJ_1718 {
 		System.out.println(convert(normal, password));
 	}
 	
-	public static StringBuilder convert(String normal, String password) {
+	private static StringBuilder convert(String normal, String password) {
 		StringBuilder res = new StringBuilder();
 		int len = normal.length();
 		int plen = password.length();
@@ -38,8 +38,8 @@ public class BOJ_1718 {
 		}
 		return res;
 	}
-	
-	public static int next_index(int index, int plen) {
+
+	private static int next_index(int index, int plen) {
 		return ++index == plen ? index - plen : index;
 	}
 }

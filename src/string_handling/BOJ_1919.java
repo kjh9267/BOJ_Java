@@ -1,4 +1,4 @@
-package string_handing;
+package string_handling;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -21,8 +21,8 @@ public class BOJ_1919 {
 		
 		System.out.println(res);
 	}
-	
-	public static void count(int[] arr, String s) {
+
+	private static void count(int[] arr, String s) {
 		int len = s.length();
 		for(int i = 0; i < len; i++) {
 			int index = s.charAt(i) - 'a';

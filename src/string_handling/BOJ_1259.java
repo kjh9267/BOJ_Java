@@ -1,4 +1,4 @@
-package string_handing;
+package string_handling;
 
 /**
  * @author Junho
