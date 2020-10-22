@@ -11,7 +11,8 @@ import java.util.StringTokenizer;
 
 public class BOJ_17270 {
     private static final int MAX = Integer.MAX_VALUE;
-    private static int N, M;
+    private static int N;
+    private static int M;
     private static ArrayList<Node>[] adj;
 
     public static void main(String[] args) throws Exception{
@@ -42,7 +43,7 @@ public class BOJ_17270 {
         System.out.println(findNode(jDist, sDist));
     }
 
-    public static class Node implements Comparable<Node>{
+    private static class Node implements Comparable<Node>{
         int node;
         int cost;
 
@@ -57,7 +58,7 @@ public class BOJ_17270 {
         }
     }
 
-    public static int[] dijkstra(int start){
+    private static int[] dijkstra(int start){
         PriorityQueue<Node> pq = new PriorityQueue<>();
         int[] dist = new int[N + 1];
 
@@ -79,7 +80,7 @@ public class BOJ_17270 {
         return dist;
     }
 
-    public static int findNode(int[] jDist, int[] sDist){
+    private static int findNode(int[] jDist, int[] sDist){
         ArrayList<Integer> candi = new ArrayList<>();
         int mini = MAX;
         int jMini = MAX;

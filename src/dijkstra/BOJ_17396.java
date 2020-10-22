@@ -10,10 +10,11 @@ import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 public class BOJ_17396 {
-    public static final long INF = Long.MAX_VALUE;
-    public static int N, M;
-    public static ArrayList<Node>[] adj;
-    public static char[] sight;
+    private static final long INF = Long.MAX_VALUE;
+    private static int N;
+    private static int M;
+    private static ArrayList<Node>[] adj;
+    private static char[] sight;
 
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -44,7 +45,8 @@ public class BOJ_17396 {
         long res = dijkstra();
         System.out.println(res == INF ? -1 : res);
     }
-    public static long dijkstra(){
+
+    private static long dijkstra(){
         PriorityQueue<Node> pq = new PriorityQueue<>();
         long[] dist = new long[N];
         pq.offer(new Node(0, 0));
@@ -64,7 +66,8 @@ public class BOJ_17396 {
         }
         return dist[N - 1];
     }
-    public static class Node implements Comparable<Node>{
+
+    private static class Node implements Comparable<Node>{
         int node;
         long cost;
         public Node(int node, long cost){

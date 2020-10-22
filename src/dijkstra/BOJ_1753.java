@@ -11,7 +11,7 @@ import java.util.StringTokenizer;
 
 public class BOJ_1753 {
 
-	public static final int INF = 200_000_000;
+	private static final int INF = 200_000_000;
 
 	public static void main(String args[]) throws Exception {
 
