@@ -7,9 +7,10 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class BOJ_14499 {
-    public static final int[][] DIR = {{}, {1, 0}, {-1 , 0}, {0, -1}, {0, 1}};
-    public static int N, M;
-    public static int[][] grid;
+    private static final int[][] DIR = {{}, {1, 0}, {-1 , 0}, {0, -1}, {0, 1}};
+    private static int N;
+    private static int M;
+    private static int[][] grid;
 
     public static void main(String[] args) throws Exception{
         StringBuilder sb = new StringBuilder();
@@ -38,7 +39,8 @@ public class BOJ_14499 {
         }
         System.out.print(sb);
     }
-    public static int roll(int idx, Block b){
+
+    private static int roll(int idx, Block b){
         int xx = b.x + DIR[idx][0];
         int yy = b.y + DIR[idx][1];
         if(!(0 <= xx && xx < M && 0 <= yy && yy < N))
@@ -78,7 +80,8 @@ public class BOJ_14499 {
             grid[b.y][b.x] = b.down;
         return b.up;
     }
-    public static class Block{
+
+    private static class Block{
         int x, y, front = 0, back = 0, left = 0, right = 0, up = 0, down = 0;
         public Block(int x, int y){
             this.x = x;

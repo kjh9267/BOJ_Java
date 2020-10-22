@@ -7,10 +7,11 @@ import java.util.*;
 // https://www.acmicpc.net/problem/17140
 
 public class BOJ_17140 {
-    public static int row, col;
-    public static int[][] grid;
-    public static PriorityQueue<Node> pq;
-    public static HashMap<Integer, Integer> cnts;
+    private static int row;
+    private static int col;
+    private static int[][] grid;
+    private static PriorityQueue<Node> pq;
+    private static HashMap<Integer, Integer> cnts;
 
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -28,7 +29,8 @@ public class BOJ_17140 {
         }
         System.out.println(solve(R, C, K));
     }
-    public static int solve(int R, int C, int K){
+
+    private static int solve(int R, int C, int K){
         int res = 0;
         row = 3;
         col = 3;
@@ -43,7 +45,8 @@ public class BOJ_17140 {
         }
         return -1;
     }
-    public static void sort(boolean flag) {
+
+    private static void sort(boolean flag) {
         int[][] temp = new int[100][100];
         int end = 0;
         for (int i = 0; i < 100; i++) {
@@ -66,7 +69,7 @@ public class BOJ_17140 {
                 Node n = pq.poll();
                 if (j == 100)
                     break;
-                if(flag)
+                if (flag)
                     temp[j][i] = n.num;
                 else
                     temp[i][j] = n.num;
@@ -78,13 +81,14 @@ public class BOJ_17140 {
                     temp[i][j + 1] = n.cnt;
             }
         }
-        if(flag)
+        if (flag)
             row = end;
         else
             col = end;
         grid = temp;
     }
-    public static class Node implements Comparable<Node>{
+
+    private static class Node implements Comparable<Node>{
         int num;
         int cnt;
         public Node(int num, int cnt){

@@ -41,7 +41,7 @@ public class BOJ_1091 {
         System.out.println(cnt);
     }
 
-    public static boolean end(int N, int[] data, int[] target){
+    private static boolean end(int N, int[] data, int[] target){
 
         for(int idx = 0; idx < N; idx++)
             if(data[idx] != target[idx])
@@ -50,7 +50,7 @@ public class BOJ_1091 {
         return true;
     }
 
-    public static void shuffle(int N, int[] data, int[] shuffleTable){
+    private static void shuffle(int N, int[] data, int[] shuffleTable){
         int[] temp = new int[N];
 
         for(int idx = 0; idx < N; idx++) {

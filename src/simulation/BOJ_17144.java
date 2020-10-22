@@ -7,9 +7,12 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class BOJ_17144 {
-    public static final int[][] DIR = {{1, 0}, {0, -1}, {-1, 0}, {0, 1}}, REV = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
-    public static int N, M;
-    public static int[][] grid, add;
+    private static final int[][] DIR = {{1, 0}, {0, -1}, {-1, 0}, {0, 1}};
+    private static final int[][] REV = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+    private static int N;
+    private static int M;
+    private static int[][] grid;
+    private static int[][] add;
 
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

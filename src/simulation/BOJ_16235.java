@@ -7,10 +7,13 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 public class BOJ_16235 {
-    public static final int[][] DIR = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1}};
-    public static int N;
-    public static ArrayDeque<Integer>[][] trees,live, dead;
-    public static int[][] grid, add;
+    private static final int[][] DIR = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1}};
+    private static int N;
+    private static ArrayDeque<Integer>[][] trees;
+    private static ArrayDeque<Integer>[][] live;
+    private static ArrayDeque<Integer>[][] dead;
+    private static int[][] grid;
+    private static int[][] add;
 
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -62,7 +65,8 @@ public class BOJ_16235 {
         }
         System.out.println(cnt);
     }
-    public static void spring(){
+
+    private static void spring(){
         for(int i = 0; i < N; i++){
             for(int j = 0; j < N; j++){
                 while (!trees[i][j].isEmpty()){
@@ -79,7 +83,8 @@ public class BOJ_16235 {
             }
         }
     }
-    public static void summer(){
+
+    private static void summer(){
         for(int i = 0; i < N; i++){
             for(int j = 0; j < N; j++){
                 while (!dead[i][j].isEmpty())
@@ -87,7 +92,8 @@ public class BOJ_16235 {
             }
         }
     }
-    public static void fall(){
+
+    private static void fall(){
         for(int i = 0; i < N; i++){
             for(int j = 0; j < N; j++) {
                 for (int tree : trees[i][j]) {
@@ -104,7 +110,8 @@ public class BOJ_16235 {
             }
         }
     }
-    public static void winter(){
+
+    private static void winter(){
         for(int i = 0; i < N; i++){
             for(int j = 0; j < N; j++){
                 grid[i][j] += add[i][j];
