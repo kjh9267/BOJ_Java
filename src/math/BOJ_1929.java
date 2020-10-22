@@ -14,7 +14,7 @@ import java.util.StringTokenizer;
  */
 
 public class BOJ_1929 {
-	public static final int MAX = 1_000_001;
+	private static final int MAX = 1_000_001;
 	
 	public static void main(String[] args) throws Exception{
 		StringBuilder sb = new StringBuilder();

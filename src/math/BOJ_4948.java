@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 
 public class BOJ_4948 {
-	public static final int MAX = 123456 * 2;
+	private static final int MAX = 123456 * 2;
 	
 	public static void main(String[] args) throws Exception{
 		StringBuilder sb = new StringBuilder();

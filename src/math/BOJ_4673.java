@@ -3,7 +3,7 @@ package math;
 import java.util.Arrays;
 
 public class BOJ_4673 {
-	public static final int MAX = 10_000;
+	private static final int MAX = 10_000;
 	
 	public static void main(String[] args) throws Exception{
 		StringBuilder sb = new StringBuilder();

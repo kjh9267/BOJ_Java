@@ -4,7 +4,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class BOJ_1964 {
-	public static BufferedReader br;
+	private static BufferedReader br;
+
 	public static void main(String args[]) throws Exception{
 		br = new BufferedReader(new InputStreamReader(System.in));
 		

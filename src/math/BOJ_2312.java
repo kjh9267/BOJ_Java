@@ -13,7 +13,7 @@ import java.util.Arrays;
  */
 
 public class BOJ_2312 {
-	public static int[] cnt;
+	private static int[] cnt;
 	
 	public static void main(String[] args) throws Exception{
 		StringBuilder sb = new StringBuilder();
@@ -31,8 +31,8 @@ public class BOJ_2312 {
 		}
 		System.out.println(sb);
 	}
-	
-	public static void solve(int N) {
+
+	private static void solve(int N) {
 		for(int i = 2; N > 1; i++) {
 			while(N % i == 0) {
 				cnt[i] += 1;
