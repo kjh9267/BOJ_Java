@@ -9,8 +9,10 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class BOJ_1005 {
-	public static ArrayList<Integer>[] graph;
-	public static int[] time, indegree, res;
+	private static ArrayList<Integer>[] graph;
+	private static int[] time;
+	private static int[] indegree;
+	private static int[] res;
 
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -51,8 +53,8 @@ public class BOJ_1005 {
 		}
 		System.out.println(sb);
 	}
-	
-	public static void topological_sort(int N) {
+
+	private static void topological_sort(int N) {
 		Queue<Integer> q = new LinkedList<>();
 		res = new int[N+1];
 		

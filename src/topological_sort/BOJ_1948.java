@@ -9,10 +9,13 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class BOJ_1948 {
-	public static int[] indegree, res;
-	public static ArrayList<Node>[] graph, way;
-	public static int cnt, E;
-	public static boolean[] visited;
+	private static int[] indegree;
+	private static int[] res;
+	private static ArrayList<Node>[] graph;
+	private static ArrayList<Node>[] way;
+	private static int cnt;
+	private static int E;
+	private static boolean[] visited;
 	
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -53,8 +56,8 @@ public class BOJ_1948 {
 		dfs(E);
 		System.out.println(cnt);
 	}
-	
-	public static class Node{
+
+	private static class Node{
 		int cur, next, cost;
 		
 		public Node(int cur, int next, int cost) {
@@ -63,8 +66,8 @@ public class BOJ_1948 {
 			this.cost = cost;
 		}
 	}
-	
-	public static void topological_sort(int N) {
+
+	private static void topological_sort(int N) {
 		Queue<Integer> q = new LinkedList<>();
 		
 		for(int i = 1; i < N + 1; i++) 
@@ -83,8 +86,8 @@ public class BOJ_1948 {
 			}
 		}
 	}
-	
-	public static void dfs(int cur) {
+
+	private static void dfs(int cur) {
 		if(visited[cur])
 			return;
 		visited[cur] = true;
