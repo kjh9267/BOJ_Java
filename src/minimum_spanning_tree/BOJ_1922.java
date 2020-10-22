@@ -14,7 +14,7 @@ import java.util.StringTokenizer;
  */
 
 public class BOJ_1922 {
-	static int[] parent;
+	private static int[] parent;
 	
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -35,7 +35,7 @@ public class BOJ_1922 {
 		
 		System.out.println(MST(pq,N));
 	}
-	
+
 	private static class Node implements Comparable<Node>{
 		int from;
 		int to;
@@ -81,6 +81,7 @@ public class BOJ_1922 {
 		}
 		return true;
 	}
+
 	private static int MST(PriorityQueue<Node> pq, int N) {
 		int mincost = 0;
 		int cnt = 0;

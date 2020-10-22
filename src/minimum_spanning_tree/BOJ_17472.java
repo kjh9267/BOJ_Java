@@ -7,12 +7,13 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 public class BOJ_17472 {
-    public static final int[][] DIR = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
-    public static int N, M;
-    public static int[][] grid;
-    public static PriorityQueue<Node> pq = new PriorityQueue<>();
-    public static boolean[][] visited;
-    public static int[] parent;
+    private static final int[][] DIR = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+    private static int N;
+    private static int M;
+    private static int[][] grid;
+    private static PriorityQueue<Node> pq = new PriorityQueue<>();
+    private static boolean[][] visited;
+    private static int[] parent;
 
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -50,7 +51,7 @@ public class BOJ_17472 {
         System.out.println(MST(cnt));
     }
 
-    public static void dfs(int x, int y, int cnt){
+    private static void dfs(int x, int y, int cnt){
         if(visited[y][x])
             return;
         visited[y][x] = true;
@@ -65,7 +66,8 @@ public class BOJ_17472 {
             dfs(xx, yy, cnt);
         }
     }
-    public static void connect(int x, int y, int start, int idx, int depth){
+
+    private static void connect(int x, int y, int start, int idx, int depth){
         int xx = x + DIR[idx][0];
         int yy = y + DIR[idx][1];
         if(!(0 <= xx && xx < M && 0 <= yy && yy < N))
@@ -77,12 +79,14 @@ public class BOJ_17472 {
         else if(grid[yy][xx] == 0)
             connect(xx, yy, start, idx, depth + 1);
     }
-    public static int find(int x){
+
+    private static int find(int x){
         if(parent[x] < 0)
             return x;
         return parent[x] = find(parent[x]);
     }
-    public static boolean merge(int x, int y){
+
+    private static boolean merge(int x, int y){
         x = find(x);
         y = find(y);
         if(x == y)
@@ -96,7 +100,8 @@ public class BOJ_17472 {
         parent[y] = x;
         return true;
     }
-    public static int MST(int cnt){
+
+    private static int MST(int cnt){
         int link = 0, minCost = 0;
         while (!pq.isEmpty()){
             Node cur = pq.poll();
@@ -108,7 +113,8 @@ public class BOJ_17472 {
         }
         return link == cnt - 1 ? minCost : -1;
     }
-    public static class Node implements Comparable<Node>{
+
+    private static class Node implements Comparable<Node>{
         int from, to, cost;
         public Node(int from, int to, int cost){
             this.from = from;

@@ -15,7 +15,7 @@ import java.util.StringTokenizer;
  */
 
 public class BOJ_9372 {
-	public static int[] parent;
+	private static int[] parent;
 
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -39,7 +39,7 @@ public class BOJ_9372 {
 		}
 	}
 
-	public static class Node implements Comparable<Node> {
+	private static class Node implements Comparable<Node> {
 		int from, to, cost;
 
 		public Node(int from, int to, int cost) {
@@ -54,18 +54,18 @@ public class BOJ_9372 {
 		}
 	}
 
-	public static void init(int V) {
+	private static void init(int V) {
 		parent = new int[V + 1];
 		Arrays.fill(parent, -1);
 	}
 
-	public static int find(int x) {
+	private static int find(int x) {
 		if (parent[x] < 0)
 			return x;
 		return parent[x] = find(parent[x]);
 	}
 
-	public static boolean merge(int x, int y) {
+	private static boolean merge(int x, int y) {
 		x = find(x);
 		y = find(y);
 
@@ -81,7 +81,7 @@ public class BOJ_9372 {
 		return true;
 	}
 
-	public static int MST(PriorityQueue<Node> pq, int N) {
+	private static int MST(PriorityQueue<Node> pq, int N) {
 		int mincost = 0;
 		int cnt = 0;
 

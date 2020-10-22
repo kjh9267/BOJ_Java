@@ -16,14 +16,17 @@ import java.util.StringTokenizer;
  */
 
 public class BOJ_1944 {
-	public static int N, M, keyNum;
-	public static int[] parent;
-	public static char[][] graph;
-	public static boolean[][] visited;
-	public static int[][] keys;
-	public static boolean[] check;
-	public static PriorityQueue<Node> pq;
-	public static int[] dx = { 0, 1, 0, -1 }, dy = { -1, 0, 1, 0 };
+	private static int N;
+	private static int M;
+	private static int keyNum;
+	private static int[] parent;
+	private static char[][] graph;
+	private static boolean[][] visited;
+	private static int[][] keys;
+	private static boolean[] check;
+	private static PriorityQueue<Node> pq;
+	private static int[] dx = { 0, 1, 0, -1 };
+	private static int[] dy = { -1, 0, 1, 0 };
 
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -42,10 +45,9 @@ public class BOJ_1944 {
 
 		init();
 		System.out.println(MST(pq));
-
 	}
 
-	public static class Node implements Comparable<Node> {
+	private static class Node implements Comparable<Node> {
 		int from, to, cost;
 
 		public Node(int from, int to, int cost) {
@@ -60,7 +62,7 @@ public class BOJ_1944 {
 		}
 	}
 
-	public static class Node2 {
+	private static class Node2 {
 		int x, y, start, dist;
 
 		public Node2(int x, int y, int start, int dist) {
@@ -71,7 +73,7 @@ public class BOJ_1944 {
 		}
 	}
 
-	public static void init() {
+	private static void init() {
 		for (int i = 0; i < N; i++)
 			for (int j = 0; j < N; j++)
 				if (graph[i][j] == 'K' || graph[i][j] == 'S')
@@ -89,7 +91,7 @@ public class BOJ_1944 {
 			}
 	}
 
-	public static void bfs(int x, int y, int start) {
+	private static void bfs(int x, int y, int start) {
 		Queue<Node2> queue = new LinkedList<>();
 		queue.offer(new Node2(x, y, start, 0));
 		visited = new boolean[N][N];
@@ -119,13 +121,13 @@ public class BOJ_1944 {
 		}
 	}
 
-	public static int find(int x) {
+	private static int find(int x) {
 		if (parent[x] < 0)
 			return x;
 		return parent[x] = find(parent[x]);
 	}
 
-	public static boolean merge(int x, int y) {
+	private static boolean merge(int x, int y) {
 		x = find(x);
 		y = find(y);
 
@@ -141,7 +143,7 @@ public class BOJ_1944 {
 		return true;
 	}
 
-	public static int MST(PriorityQueue<Node> pq) {
+	private static int MST(PriorityQueue<Node> pq) {
 		int mincost = 0;
 		int cnt = 0;
 
