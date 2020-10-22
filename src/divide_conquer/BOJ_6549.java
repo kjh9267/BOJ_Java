@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
 // https://www.acmicpc.net/problem/6549
 
 public class BOJ_6549 {
-    public static int[] data;
+    private static int[] data;
 
     public static void main(String[] args) throws Exception{
         StringBuilder sb = new StringBuilder();
@@ -28,7 +28,7 @@ public class BOJ_6549 {
         System.out.print(sb);
     }
 
-    public static long solve(int start, int end) {
+    private static long solve(int start, int end) {
         if(start == end - 1)
             return data[start];
 

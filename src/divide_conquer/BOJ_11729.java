@@ -12,8 +12,8 @@ import java.io.InputStreamReader;
  */
 
 public class BOJ_11729 {
-	public static int cnt;
-	public static StringBuilder sb = new StringBuilder();
+	private static int cnt;
+	private static StringBuilder sb = new StringBuilder();
 	
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -23,8 +23,8 @@ public class BOJ_11729 {
 		System.out.println(cnt);
 		System.out.println(sb);
 	}
-	
-	public static void solve(int N, int from, int to, int by) {
+
+	private static void solve(int N, int from, int to, int by) {
 		if(N == 0)
 			return;
 		cnt += 1;

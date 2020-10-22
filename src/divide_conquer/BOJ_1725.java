@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 
 
 public class BOJ_1725 {
-	public static int[] data;
+	private static int[] data;
 	
 	public static void main(String[] args) throws Exception{
 		StringBuilder sb = new StringBuilder();
@@ -20,8 +20,8 @@ public class BOJ_1725 {
 			
 		System.out.println(solve(0, N));
 	}
-	
-	public static long solve(int start, int end) {
+
+	private static long solve(int start, int end) {
 		if(start == end - 1)
 			return data[start];
 		
