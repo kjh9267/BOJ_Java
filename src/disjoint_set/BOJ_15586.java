@@ -7,7 +7,7 @@ import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 public class BOJ_15586 {
-	public static int[] parent;
+	private static int[] parent;
 
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -56,7 +56,7 @@ public class BOJ_15586 {
 		System.out.println(sb);
 	}
 
-	public static class Link implements Comparable<Link> {
+	private static class Link implements Comparable<Link> {
 		int x;
 		int y;
 		int cost;
@@ -73,7 +73,7 @@ public class BOJ_15586 {
 		}
 	}
 
-	public static class Query implements Comparable<Query> {
+	private static class Query implements Comparable<Query> {
 		int index;
 		int node;
 		int k;
@@ -90,13 +90,13 @@ public class BOJ_15586 {
 		}
 	}
 
-	public static int find(int x) {
+	private static int find(int x) {
 		if (parent[x] < 0)
 			return x;
 		return parent[x] = find(parent[x]);
 	}
 
-	public static void merge(int x, int y) {
+	private static void merge(int x, int y) {
 		x = find(x);
 		y = find(y);
 

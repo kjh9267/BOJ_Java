@@ -8,7 +8,8 @@ import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class BOJ_2843 {
-    private static int[] adj, parent;
+    private static int[] adj;
+    private static int[] parent;
 
     public static void main(String[] args) throws Exception{
         Stack<String> stack = new Stack<>();

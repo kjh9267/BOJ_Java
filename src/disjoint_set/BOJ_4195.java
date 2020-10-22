@@ -8,9 +8,9 @@ import java.util.HashMap;
 import java.util.StringTokenizer;
 
 public class BOJ_4195 {
-	public static HashMap<String, Integer> map;
-	public static int[] parent;
-	public static int res;
+	private static HashMap<String, Integer> map;
+	private static int[] parent;
+	private static int res;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -40,15 +40,15 @@ public class BOJ_4195 {
 			}
 		}
 	}
-	
-	public static int find(int x) {
+
+	private static int find(int x) {
 		if(parent[x] < 0) {
 			return x;
 		}
 		return parent[x] = find(parent[x]);
 	}
-	
-	public static int merge(int x, int y) {
+
+	private static int merge(int x, int y) {
 		x = find(x);
 		y = find(y);
 		
