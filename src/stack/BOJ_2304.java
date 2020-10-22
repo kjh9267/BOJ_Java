@@ -15,7 +15,7 @@ import java.util.StringTokenizer;
  */
 
 public class BOJ_2304 {
-	public static Stick[] data;
+	private static Stick[] data;
 	
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -30,8 +30,8 @@ public class BOJ_2304 {
 		Arrays.sort(data);
 		System.out.println(solve(N));
 	}
-	
-	public static int solve(int N) {
+
+	private static int solve(int N) {
 		int res = 0;
 		Stack<Stick> stack = new Stack<Stick>();
 		stack.push(new Stick(data[0].x, 0));
@@ -53,8 +53,8 @@ public class BOJ_2304 {
 		}
 		return res;
 	}
-	
-	public static class Stick implements Comparable<Stick>{
+
+	private static class Stick implements Comparable<Stick>{
 		int x, y;
 		public Stick(int x, int y) {
 			this.x = x;

@@ -46,7 +46,7 @@ public class BOJ_2493 {
         System.out.print(sb);
     }
 
-    public static class Pair{
+    private static class Pair{
         int idx;
         int value;
 
