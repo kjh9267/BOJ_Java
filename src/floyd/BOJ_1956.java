@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
 
 public class BOJ_1956 {
 
-	public static final int INF = 10_001;
+	private static final int INF = 10_001;
 
 	public static void main(String args[]) throws Exception {
 
