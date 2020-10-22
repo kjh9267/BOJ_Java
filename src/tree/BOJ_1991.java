@@ -13,8 +13,8 @@ import java.util.StringTokenizer;
  */
 
 public class BOJ_1991 {
-	public static Node[] tree;
-	public static StringBuilder sb = new StringBuilder();
+	private static Node[] tree;
+	private static StringBuilder sb = new StringBuilder();
 	
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -35,32 +35,32 @@ public class BOJ_1991 {
 		postorder(0);
 		System.out.println(sb);
 	}
-	
-	public static class Node{
+
+	private static class Node{
 		int left, right;
 		public Node(int left, int right) {
 			this.left = left;
 			this.right = right;
 		}
 	}
-	
-	public static void preorder(int cur) {
+
+	private static void preorder(int cur) {
 		if(cur < 0)
 			return;
 		sb.append((char) (cur + 65));
 		preorder(tree[cur].left);
 		preorder(tree[cur].right);
 	}
-	
-	public static void inorder(int cur) {
+
+	private static void inorder(int cur) {
 		if(cur < 0)
 			return;
 		inorder(tree[cur].left);
 		sb.append((char) (cur + 65));
 		inorder(tree[cur].right);
 	}
-	
-	public static void postorder(int cur) {
+
+	private static void postorder(int cur) {
 		if(cur < 0)
 			return;
 		postorder(tree[cur].left);

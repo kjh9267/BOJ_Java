@@ -15,9 +15,10 @@ import java.util.StringTokenizer;
  */
 
 public class BOJ_1967 {
-	public static ArrayList<Node>[] tree;
-	public static int[] visited;
-	public static int res, leaf;
+	private static ArrayList<Node>[] tree;
+	private static int[] visited;
+	private static int res;
+	private static int leaf;
 	
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -46,8 +47,8 @@ public class BOJ_1967 {
 		dfs(leaf);
 		System.out.println(res);
 	}
-	
-	public static class Node{
+
+	private static class Node{
 		int next;
 		int cost;
 		public Node(int next, int cost) {
@@ -55,8 +56,8 @@ public class BOJ_1967 {
 			this.cost = cost;
 		}
 	}
-	
-	public static void dfs(int cur) {
+
+	private static void dfs(int cur) {
 		if(visited[cur] > res) {
 			res = visited[cur];
 			leaf = cur;
