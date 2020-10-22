@@ -19,11 +19,13 @@ import java.util.StringTokenizer;
  */
 
 public class BOJ_2150 {
-	public static int cnt, scc;
-	public static ArrayList<Integer>[] graph, res;
-	public static int[] dfsN;
-	public static boolean[] finished;
-	public static Stack<Integer> stack;
+	private static int cnt;
+	private static int scc;
+	private static ArrayList<Integer>[] graph;
+	private static ArrayList<Integer>[] res;
+	private static int[] dfsN;
+	private static boolean[] finished;
+	private static Stack<Integer> stack;
 	
 	public static void main(String[] args) throws Exception{
 		StringBuilder sb = new StringBuilder();
@@ -64,8 +66,8 @@ public class BOJ_2150 {
 
 		System.out.print(sb);
 	}
-	
-	public static int dfs(int cur) {
+
+	private static int dfs(int cur) {
 		dfsN[cur] = ++cnt;
 		stack.push(cur);
 		
@@ -82,8 +84,8 @@ public class BOJ_2150 {
 			
 		return ancestor;
 	}
-	
-	public static void extract(int cur) {
+
+	private static void extract(int cur) {
 		scc += 1;
 		while(true) {
 			int node = stack.pop();
@@ -93,8 +95,8 @@ public class BOJ_2150 {
 				break;
 		}
 	}
-	
-	public static void sorting() {
+
+	private static void sorting() {
 
 		for(int i = 1; i < scc + 1; i++)
 			Collections.sort(res[i]);

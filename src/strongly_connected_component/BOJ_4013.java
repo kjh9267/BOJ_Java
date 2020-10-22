@@ -17,12 +17,27 @@ import java.util.StringTokenizer;
  */
 
 public class BOJ_4013 {
-	public static int N, M, S, P, cnt, DAGIndex = -1, DAGLen;
-	public static ArrayList<Integer>[] graph, DAG;
-	public static int[] atm, indegree, dfsN, DAGCheck, res, sum;
-	public static boolean[] finished, restaurants, hasRestaurant, canGo;
-	public static Stack<Integer> stack;
-	public static ArrayList<ArrayList<Integer>> scc;
+	private static int N;
+	private static int M;
+	private static int S;
+	private static int P;
+	private static int cnt;
+	private static int DAGIndex = -1;
+	private static int DAGLen;
+	private static ArrayList<Integer>[] graph;
+	private static ArrayList<Integer>[] DAG;
+	private static int[] atm;
+	private static int[] indegree;
+	private static int[] dfsN;
+	private static int[] DAGCheck;
+	private static int[] res;
+	private static int[] sum;
+	private static boolean[] finished;
+	private static boolean[] restaurants;
+	private static boolean[] hasRestaurant;
+	private static boolean[] canGo;
+	private static Stack<Integer> stack;
+	private static ArrayList<ArrayList<Integer>> scc;
 	
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -74,18 +89,8 @@ public class BOJ_4013 {
 
 		System.out.println(max);
 	}
-	
-	public static class SCCNode{
-		int next;
-		int cost;
-		
-		public SCCNode(int next, int cost) {
-			this.next = next;
-			this.cost = cost;
-		}
-	}
-	
-	public static int dfs(int cur) {
+
+	private static int dfs(int cur) {
 		dfsN[cur] = ++cnt;
 		stack.push(cur);
 		
@@ -102,8 +107,8 @@ public class BOJ_4013 {
 		
 		return ancestor;
 	}
-		
-	public static void extract(int cur) {
+
+	private static void extract(int cur) {
 		DAGIndex += 1;
 		scc.add(new ArrayList<Integer>());
 		while(true) {
@@ -115,8 +120,8 @@ public class BOJ_4013 {
 				break;
 		}
 	}
-	
-	public static void DAGModeling() {
+
+	private static void DAGModeling() {
 		DAGLen = DAGIndex + 1;
 		indegree = new int[DAGLen];
 		DAG = new ArrayList[DAGLen];
@@ -142,8 +147,8 @@ public class BOJ_4013 {
 			}
 		}
 	}
-	
-	public static void topologicalSort(int N) {
+
+	private static void topologicalSort(int N) {
 		Queue<Integer> queue = new LinkedList<>();
 
 		for(int i = 0; i < N; i++) {
