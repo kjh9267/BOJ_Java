@@ -12,10 +12,13 @@ import java.io.InputStreamReader;
  */
 
 public class BOJ_1786 {
-	public static int[] table;
-	public static char[] string, target;
-	public static int N, M, cnt;
-	public static StringBuilder sb;
+	private static int[] table;
+	private static char[] string;
+	private static char[] target;
+	private static int N;
+	private static int M;
+	private static int cnt;
+	private static StringBuilder sb;
 	
 	public static void main(String[] args) throws Exception{
 		sb = new StringBuilder();
@@ -29,8 +32,8 @@ public class BOJ_1786 {
 		System.out.println(cnt);
 		System.out.println(sb);
 	}
-	
-	public static void init() {
+
+	private static void init() {
 		N = string.length;
 		M = target.length;
 		table = new int[M];
@@ -49,8 +52,8 @@ public class BOJ_1786 {
 			}
 		}
 	}
-	
-	public static void kmp() {
+
+	private static void kmp() {
 		cnt = 0;
 		int idx = 0;
 		int offset = 0;
