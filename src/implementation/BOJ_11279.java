@@ -13,6 +13,7 @@ import java.util.PriorityQueue;
  */
 
 public class BOJ_11279 {
+
 	public static void main(String[] args) throws Exception{
 		StringBuilder sb = new StringBuilder();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -32,8 +33,8 @@ public class BOJ_11279 {
 		}
 		System.out.println(sb);
 	}
-	
-	public static class Num implements Comparable<Num>{
+
+	private static class Num implements Comparable<Num>{
 		int num;
 		public Num(int num) {
 			this.num = num;

@@ -32,8 +32,8 @@ public class BOJ_11286 {
 		}
 		System.out.println(sb);
 	}
-	
-	public static class Num implements Comparable<Num>{
+
+	private static class Num implements Comparable<Num>{
 		int num;
 		public Num(int num) {
 			this.num = num;

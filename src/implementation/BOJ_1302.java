@@ -32,7 +32,7 @@ public class BOJ_1302 {
         System.out.println(list.get(0).word);
     }
 
-    public static class Pair implements Comparable<Pair>{
+    private static class Pair implements Comparable<Pair>{
         String word;
         int cnt;
 

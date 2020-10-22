@@ -5,9 +5,13 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 
 public class BOJ_1913 {
-	public static final int[][] DIR = { { 0, -1 }, { 1, 0 }, { 0, 1 }, { -1, 0 } };
-	public static int index, startX, startY, nextX, nextY;
-	public static int[][] graph;
+	private static final int[][] DIR = { { 0, -1 }, { 1, 0 }, { 0, 1 }, { -1, 0 } };
+	private static int index;
+	private static int startX;
+	private static int startY;
+	private static int nextX;
+	private static int nextY;
+	private static int[][] graph;
 
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -39,12 +43,12 @@ public class BOJ_1913 {
 		System.out.println(res(N,target));
 	}
 
-	public static void cycle() {
+	private static void cycle() {
 		if(++index == 4)
 			index = 0;
 	}
-	
-	public static void go(int threshold) {
+
+	private static void go(int threshold) {
 		for (int i = 0; i < threshold; i++) {
 			nextX = startX + DIR[index][0];
 			nextY = startY + DIR[index][1];
@@ -53,8 +57,8 @@ public class BOJ_1913 {
 			startY = nextY;
 		}
 	}
-	
-	public static StringBuilder res(int N, int target) {
+
+	private static StringBuilder res(int N, int target) {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < N; i++) {
 			for(int j = 0; j < N; j++) {

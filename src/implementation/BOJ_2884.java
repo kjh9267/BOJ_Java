@@ -27,7 +27,5 @@ public class BOJ_2884{
 		  M = minutes % 60;
 		  
 		  System.out.println(H + " " + M);
-		  
 	  }
-
 }
