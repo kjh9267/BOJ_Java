@@ -7,7 +7,8 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 
 public class BOJ_1562 {
-    private static final int MOD = 1_000_000_000, TARGET = 1023;
+    private static final int MOD = 1_000_000_000;
+    private static final int TARGET = 1023;
     private static int N;
     private static int[][][] dp;
 
@@ -25,7 +26,7 @@ public class BOJ_1562 {
         System.out.println(dfsAll());
     }
 
-    public static int dfsAll() {
+    private static int dfsAll() {
         int res = 0;
         for(int num = 1; num <= 9; num++) {
             res += dfs(1, num, 1 << num);
@@ -34,7 +35,7 @@ public class BOJ_1562 {
         return res;
     }
 
-    public static int dfs(int cur, int num, int bit) {
+    private static int dfs(int cur, int num, int bit) {
         if(cur == N) {
             if(bit == TARGET) { return 1; }
             return 0;

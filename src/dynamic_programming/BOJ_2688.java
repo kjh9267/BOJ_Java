@@ -6,9 +6,9 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class BOJ_2688 {
-    public static final int MAX = 64;
-    public static final String NEW_LINE = "\n";
-    public static long[][] dp;
+    private static final int MAX = 64;
+    private static final String NEW_LINE = "\n";
+    private static long[][] dp;
 
     public static void main(String[] args) throws Exception{
         StringBuilder sb = new StringBuilder();
@@ -26,7 +26,7 @@ public class BOJ_2688 {
         System.out.println(sb);
     }
 
-    public static long dfs(int depth, int num){
+    private static long dfs(int depth, int num){
         if(depth == MAX)
             return 1;
         if(dp[depth][num] != 0)

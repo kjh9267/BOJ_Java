@@ -14,9 +14,10 @@ import java.util.StringTokenizer;
  */
 
 public class BOJ_2098 {
-	public static int[][] adj, dp;
-	public static int N;
-	public static final int MAX = 1_000_000_001;
+	private static int[][] adj;
+	private static int[][] dp;
+	private static int N;
+	private static final int MAX = 1_000_000_001;
 	
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -33,8 +34,8 @@ public class BOJ_2098 {
 		}
 		System.out.println(dfs(0, 1));
 	}
-	
-	public static int dfs(int cur, int visited) {
+
+	private static int dfs(int cur, int visited) {
 		if(visited == (1 << N) - 1)
 			return adj[cur][0] != 0 ? adj[cur][0] : MAX;
 		if(dp[cur][visited] != -1)

@@ -13,8 +13,8 @@ import java.util.Arrays;
  */
 
 public class BOJ_2133 {
-	public static int[] dp;
-	public static int N;
+	private static int[] dp;
+	private static int N;
 	
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -23,8 +23,8 @@ public class BOJ_2133 {
 		Arrays.fill(dp, -1);
 		System.out.println(solve(N));
 	}
-	
-	public static int solve(int cur) {
+
+	private static int solve(int cur) {
 		if(cur == 0)
 			return 1;
 		if(cur % 2 == 1)

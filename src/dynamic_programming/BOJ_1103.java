@@ -14,7 +14,8 @@ public class BOJ_1103 {
     private static int[][] dp;
     private static char[][] grid;
     private static boolean[][] finished;
-    private static int N, M;
+    private static int N;
+    private static int M;
     private static boolean cycle;
 
     public static void main(String[] args) throws Exception{
@@ -44,7 +45,7 @@ public class BOJ_1103 {
             System.out.println(res);
     }
 
-    public static int dfs(int x, int y){
+    private static int dfs(int x, int y){
         if(x < 0 || x >= M || y < 0 || y >= N || grid[y][x] == 'H')
             return 0;
         if(dp[y][x] != -1){

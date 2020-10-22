@@ -14,8 +14,9 @@ import java.util.StringTokenizer;
  */
 
 public class BOJ_11053 {
-	public static int[] sequence, dp;
-	public static int N;
+	private static int[] sequence;
+	private static int[] dp;
+	private static int N;
 	
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -34,8 +35,8 @@ public class BOJ_11053 {
 		
 		System.out.println(res);
 	}
-	
-	public static int solve(int start) {
+
+	private static int solve(int start) {
 		if(dp[start] != -1)
 			return dp[start];
 		

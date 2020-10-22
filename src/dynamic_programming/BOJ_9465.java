@@ -14,8 +14,9 @@ import java.util.StringTokenizer;
  */
 
 public class BOJ_9465 {
-	public static int[][] dp, data;
-	public static int N;
+	private static int[][] dp;
+	private static int[][] data;
+	private static int N;
 	
 	public static void main(String[] args) throws Exception{
 		StringBuilder sb = new StringBuilder();
@@ -39,8 +40,8 @@ public class BOJ_9465 {
 		}
 		System.out.println(sb);
 	}
-	
-	public static int solve(int cur, int pos) {
+
+	private static int solve(int cur, int pos) {
 		if(cur > N)
 			return 0;
 		if(dp[pos][cur] != -1)

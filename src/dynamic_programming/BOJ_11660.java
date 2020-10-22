@@ -11,6 +11,7 @@ import java.util.StringTokenizer;
  */
 
 public class BOJ_11660 {
+
     public static void main(String[] args) throws Exception{
         StringBuilder sb = new StringBuilder();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

@@ -7,9 +7,10 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class BOJ_10164 {
-    public static boolean[][] grid;
-    public static int[][] dp;
-    public static int N, M;
+    private static boolean[][] grid;
+    private static int[][] dp;
+    private static int N;
+    private static int M;
 
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -36,7 +37,8 @@ public class BOJ_10164 {
         }
         System.out.println(dfs(0, 0));
     }
-    public static int dfs(int x, int y){
+
+    private static int dfs(int x, int y){
         if(grid[y][x])
             return 0;
         if(x == M - 1 && y == N - 1)

@@ -12,9 +12,17 @@ import java.io.InputStreamReader;
  */
 
 public class BOJ_2748 {
-	public static long[] dp;
-	
-	public static long solve(int N) {
+	private static long[] dp;
+
+	public static void main(String[] args) throws Exception{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int N = Integer.parseInt(br.readLine());
+		dp = new long[N + 1];
+
+		System.out.println(solve(N));
+	}
+
+	private static long solve(int N) {
 		if(N == 0)
 			return 0;
 		if(N == 1)
@@ -24,13 +32,5 @@ public class BOJ_2748 {
 		dp[N - 1] = solve(N - 1);
 		dp[N - 2] = solve(N - 2);
 		return dp[N - 1] + dp[N - 2];
-	}
-	
-	public static void main(String[] args) throws Exception{
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int N = Integer.parseInt(br.readLine());
-		dp = new long[N + 1];
-		
-		System.out.println(solve(N));
 	}
 }

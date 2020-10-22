@@ -8,9 +8,11 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class BOJ_14430 {
-    public static final int[][] DIR = {{1, 0}, {0, 1}};
-    public static int N, M;
-    public static int[][] grid, dp;
+    private static final int[][] DIR = {{1, 0}, {0, 1}};
+    private static int N;
+    private static int M;
+    private static int[][] grid;
+    private static int[][] dp;
 
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -33,7 +35,7 @@ public class BOJ_14430 {
         System.out.println(dfs(0, 0));
     }
 
-    public static int dfs(int x, int y){
+    private static int dfs(int x, int y){
         if(x == M || y == N)
             return 0;
         if(dp[y][x] != -1)

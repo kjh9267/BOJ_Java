@@ -30,7 +30,7 @@ public class BOJ_5557 {
         System.out.println(dfs(2, data[1]));
     }
 
-    public static long dfs(int cur, int sum) {
+    private static long dfs(int cur, int sum) {
         if(cur == N)
             return sum == data[N] ? 1 : 0;
         if(dp[cur][sum] != -1)

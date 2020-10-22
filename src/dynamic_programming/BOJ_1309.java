@@ -6,9 +6,9 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class BOJ_1309 {
-    public static int N;
-    public static boolean[][] grid;
-    public static int [][] dp;
+    private static int N;
+    private static boolean[][] grid;
+    private static int [][] dp;
 
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

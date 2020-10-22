@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class BOJ_17390 {
+
     public static void main(String[] args) throws Exception{
         StringBuilder sb = new StringBuilder();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

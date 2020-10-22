@@ -11,7 +11,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class BOJ_11726 {
-	public static int[] dp;
+	private static int[] dp;
 	
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -19,8 +19,8 @@ public class BOJ_11726 {
 		dp = new int[N + 1];
 		System.out.println(solve(N));
 	}
-	
-	public static int solve(int N) {
+
+	private static int solve(int N) {
 		if(N <= 1)
 			return 1;
 		if(dp[N] != 0)

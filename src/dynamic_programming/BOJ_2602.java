@@ -12,10 +12,11 @@ import java.io.InputStreamReader;
  */
 
 public class BOJ_2602 {
-	public static char[] data;
-	public static char[][] grid;
-	public static int[][][] dp;
-	public static int N, M;
+	private static char[] data;
+	private static char[][] grid;
+	private static int[][][] dp;
+	private static int N;
+	private static int M;
 	
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -36,8 +37,8 @@ public class BOJ_2602 {
 		
 		System.out.println(res);
 	}
-	
-	public static int solve(int cur, int x, int y) {
+
+	private static int solve(int cur, int x, int y) {
 		if(cur == M)
 			return 0;
 		if(cur == M - 1 && data[cur] == grid[y][x])

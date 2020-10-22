@@ -8,7 +8,8 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class BOJ_17953 {
-    private static int N, M;
+    private static int N;
+    private static int M;
     private static int[][][] dp;
     private static int[][] data;
 
@@ -36,7 +37,7 @@ public class BOJ_17953 {
         System.out.println(dfsAll());
     }
 
-    public static int dfsAll() {
+    private static int dfsAll() {
         int res = 0;
 
         for(int food = 0; food < M; food++) {
@@ -46,7 +47,7 @@ public class BOJ_17953 {
         return res;
     }
 
-    public static int dfs(int day, int food, int same) {
+    private static int dfs(int day, int food, int same) {
         if(day == N)
             return 0;
         if(dp[food][day][same] != -1)

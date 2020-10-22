@@ -12,8 +12,11 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class BOJ_1520 {
-	public static int[][] grid, dp, DIR = {{0, -1}, {1, 0}, {-1, 0}, {0, 1}};
-	public static int N, M;
+	private static int[][] grid;
+	private static int[][] dp;
+	private static int[][] DIR = {{0, -1}, {1, 0}, {-1, 0}, {0, 1}};
+	private static int N;
+	private static int M;
 	
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -31,8 +34,8 @@ public class BOJ_1520 {
 		}
 		System.out.println(dfs(0, 0));
 	}
-	
-	public static int dfs(int x, int y) {
+
+	private static int dfs(int x, int y) {
 		if(y == M - 1 && x == N - 1)
 			return 1;
 		if(dp[y][x] != -1)

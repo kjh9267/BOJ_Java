@@ -13,8 +13,9 @@ import java.util.StringTokenizer;
 
 
 public class BOJ_11066 {
-	public static long[][] dp;
-	public static int[] acc, data;
+	private static long[][] dp;
+	private static int[] acc;
+	private static int[] data;
 	
 	public static void main(String[] args) throws Exception {
 		StringBuilder sb = new StringBuilder();
@@ -38,7 +39,8 @@ public class BOJ_11066 {
 		}
 		System.out.println(sb);			
 	}
-	public static long solve(int start, int end) {
+
+	private static long solve(int start, int end) {
 		if(start >= end) 
 			return 0;
 		if(dp[start][end] != -1)

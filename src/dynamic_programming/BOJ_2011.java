@@ -6,9 +6,9 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class BOJ_2011 {
-    public static int N;
-    public static char[] data;
-    public static long[] dp;
+    private static int N;
+    private static char[] data;
+    private static long[] dp;
 
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -18,7 +18,7 @@ public class BOJ_2011 {
         System.out.println(dfs(0));
     }
 
-    public static long dfs(int depth){
+    private static long dfs(int depth){
         if(depth >= N)
             return 1;
         if(data[depth] == '0')
