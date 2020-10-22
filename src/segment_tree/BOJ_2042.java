@@ -14,40 +14,12 @@ import java.util.StringTokenizer;
  */
 
 public class BOJ_2042 {
-	public static int height, size;
-	public static long[] tree, arr;
-	public static final String NEW_LINE = "\n";
-	
-	public static long init(int node, int start, int end) {
-		if(start == end)
-			return tree[node] = arr[start];
-		int mid = (start + end) / 2;
-		return tree[node] = init(node * 2, start, mid) + init(node * 2 + 1, mid + 1, end);
-	}
-	
-	public static void update(int node, int index, int start, int end, long diff) {
-		if (!(start <= index && index <= end))
-	        return;
-		
-		tree[node] += diff;
-		
-		if(start != end) {
-			int mid = (start + end) / 2;
-			update(node * 2, index, start, mid, diff);
-			update(node * 2 + 1, index, mid + 1, end, diff);
-		}
-	}
-	
-	public static long sum(int node, int start, int end, int left, int right) {
-		if(left > end || right < start)
-			return 0;
-		if(left <= start && end <= right) {
-			return tree[node];
-		}
-		int mid = (start + end) / 2;
-		return sum(node * 2, start, mid, left, right) + sum(node * 2 + 1, mid + 1, end, left, right);
-	}
-	
+	private static int height;
+	private static int size;
+	private static long[] tree;
+	private static long[] arr;
+	private static final String NEW_LINE = "\n";
+
 	public static void main(String args[]) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
@@ -55,16 +27,16 @@ public class BOJ_2042 {
 		int N = Integer.parseInt(st.nextToken());
 		int M = Integer.parseInt(st.nextToken());
 		int K = Integer.parseInt(st.nextToken());
-		
+
 		height = (int) Math.ceil((Math.log(N)/Math.log(2)));
 		size = (int) Math.pow(2, height+1);
 		tree = new long[size];
 		arr = new long[N+1];
-		
+
 		for(int i = 1; i < N+1; i++) {
 			arr[i] = Long.parseLong(br.readLine()) % Long.MAX_VALUE;
 		}
-		
+
 		init(1,1,N);
 
 		for(int i = 0; i < M + K; i++) {
@@ -83,5 +55,35 @@ public class BOJ_2042 {
 			}
 		}
 		System.out.println(sb.toString());
+	}
+
+	private static long init(int node, int start, int end) {
+		if(start == end)
+			return tree[node] = arr[start];
+		int mid = (start + end) / 2;
+		return tree[node] = init(node * 2, start, mid) + init(node * 2 + 1, mid + 1, end);
+	}
+
+	private static void update(int node, int index, int start, int end, long diff) {
+		if (!(start <= index && index <= end))
+	        return;
+
+		tree[node] += diff;
+
+		if(start != end) {
+			int mid = (start + end) / 2;
+			update(node * 2, index, start, mid, diff);
+			update(node * 2 + 1, index, mid + 1, end, diff);
+		}
+	}
+
+	private static long sum(int node, int start, int end, int left, int right) {
+		if(left > end || right < start)
+			return 0;
+		if(left <= start && end <= right) {
+			return tree[node];
+		}
+		int mid = (start + end) / 2;
+		return sum(node * 2, start, mid, left, right) + sum(node * 2 + 1, mid + 1, end, left, right);
 	}
 }

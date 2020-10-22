@@ -6,8 +6,9 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class BOJ_5676 {
-	public static int[] tree, nums;
-	public static int N;
+	private static int[] tree;
+	private static int[] nums;
+	private static int N;
 
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -68,14 +69,14 @@ public class BOJ_5676 {
 		}
 	}
 
-	public static int init(int node, int start, int end) {
+	private static int init(int node, int start, int end) {
 		if (start == end)
 			return tree[node] = nums[start];
 		int mid = (start + end) / 2;
 		return tree[node] = init(node * 2, start, mid) * init(node * 2 + 1, mid + 1, end);
 	}
 
-	public static int update(int node, int start, int end, int index, int diff) {
+	private static int update(int node, int start, int end, int index, int diff) {
 		if (!(start <= index && index <= end))
 			return tree[node];
 		if (start == end)
@@ -85,7 +86,7 @@ public class BOJ_5676 {
 				* update(node * 2 + 1, mid + 1, end, index, diff);
 	}
 
-	public static int multi(int node, int start, int end, int left, int right) {
+	private static int multi(int node, int start, int end, int left, int right) {
 		if (left > end || right < start)
 			return 1;
 		if (left <= start && end <= right)

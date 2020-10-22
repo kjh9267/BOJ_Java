@@ -6,9 +6,10 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class BOJ_1275 {
-	public static long[] tree;
-	public static long[] nums;
-	public static int N, Q;
+	private static long[] tree;
+	private static long[] nums;
+	private static int N;
+	private static int Q;
 	
 	public static void main(String args[]) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -45,14 +46,14 @@ public class BOJ_1275 {
 		}
 		System.out.println(sb.toString());
 	}
-	
-	public static long init(int node, int start, int end) {
+
+	private static long init(int node, int start, int end) {
 		if(start == end) return tree[node] = nums[start];
 		int mid = (start + end)/2;
 		return tree[node] = init(node * 2, start, mid) + init(node * 2 + 1, mid + 1, end);
 	}
-	
-	public static void update(int node, int start, int end, int index, long diff) {
+
+	private static void update(int node, int start, int end, int index, long diff) {
 		if(!(start <= index && index <= end)) return;
 		tree[node] += diff;
 		if(start != end) {
@@ -61,8 +62,8 @@ public class BOJ_1275 {
 			update(node * 2 + 1, mid + 1, end, index, diff);
 		}
 	}
-	
-	public static long sum(int node, int start, int end, int left, int right) {
+
+	private static long sum(int node, int start, int end, int left, int right) {
 		if(left > end || right < start) return 0;
 		if(left <= start && end <= right) return tree[node];
 		int mid = (start + end)/2;

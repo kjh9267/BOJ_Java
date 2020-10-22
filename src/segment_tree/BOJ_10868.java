@@ -5,8 +5,10 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class BOJ_10868 {
-	public static int N, M;
-	public static int[] tree, nums;
+	private static int N;
+	private static int M;
+	private static int[] tree;
+	private static int[] nums;
 	
 	public static void main(String args[]) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -32,14 +34,14 @@ public class BOJ_10868 {
 		}
 		System.out.println(sb.toString());
 	}
-	
-	public static int init(int node, int start, int end) {
+
+	private static int init(int node, int start, int end) {
 		if(start == end) return tree[node] = nums[start];
 		int mid = (start + end)/2;
 		return tree[node] = Math.min(init(node * 2, start, mid), init(node * 2 + 1, mid + 1, end));
 	}
-	
-	public static int min(int node, int start, int end, int left, int right) {
+
+	private static int min(int node, int start, int end, int left, int right) {
 		if(left > end || right < start) return Integer.MAX_VALUE;
 		if(left <= start && end <= right) return tree[node];
 		int mid = (start + end)/2;

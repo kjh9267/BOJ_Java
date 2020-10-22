@@ -5,8 +5,11 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class BOJ_2357 {
-	public static int N, M;
-	public static int[] min_tree, max_tree, nums;
+	private static int N;
+	private static int M;
+	private static int[] min_tree;
+	private static int[] max_tree;
+	private static int[] nums;
 	
 	public static void main(String args[]) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -34,30 +37,30 @@ public class BOJ_2357 {
 		}
 		System.out.println(sb.toString());
 	}
-	
-	public static int min_init(int node, int start, int end) {
+
+	private static int min_init(int node, int start, int end) {
 		if(start == end) return min_tree[node] = nums[start];
 		int mid = (start + end)/2;
 		return min_tree[node] = Math.min(min_init(node * 2, start, mid),
 				min_init(node * 2 + 1, mid + 1, end));
 	}
-	
-		public static int max_init(int node, int start, int end) {
+
+	private static int max_init(int node, int start, int end) {
 		if(start == end) return max_tree[node] = nums[start];
 		int mid = (start + end)/2;
 		return max_tree[node] = Math.max(max_init(node * 2, start, mid),
 				max_init(node * 2 + 1, mid + 1, end));
 	}
-	
-	public static int min(int node, int start, int end, int left, int right) {
+
+	private static int min(int node, int start, int end, int left, int right) {
 		if(left > end || right < start) return Integer.MAX_VALUE;
 		if(left <= start && end <= right) return min_tree[node];
 		int mid = (start + end)/2;
 		return Math.min(min(node * 2, start, mid, left, right),
 				min(node * 2 + 1, mid + 1, end, left, right));
 	}
-	
-	public static int max(int node, int start, int end, int left, int right) {
+
+	private static int max(int node, int start, int end, int left, int right) {
 		if(left > end || right < start) return Integer.MIN_VALUE;
 		if(left <= start && end <= right) return max_tree[node];
 		int mid = (start + end)/2;
