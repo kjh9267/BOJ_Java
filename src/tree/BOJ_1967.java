@@ -24,9 +24,14 @@ public class BOJ_1967 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int N = Integer.parseInt(br.readLine());
 		tree = new ArrayList[N + 1];
-		
+
+		if (N == 1) {
+			System.out.println(0);
+			System.exit(0);
+		}
+
 		for(int i = 1; i < N + 1; i++)
-			tree[i] = new ArrayList<Node>();
+			tree[i] = new ArrayList<>();
 		
 		for(int i = 1; i < N; i++) {
 			StringTokenizer st = new StringTokenizer(br.readLine());
@@ -51,6 +56,7 @@ public class BOJ_1967 {
 	private static class Node{
 		int next;
 		int cost;
+		
 		public Node(int next, int cost) {
 			this.next = next;
 			this.cost = cost;
@@ -62,6 +68,7 @@ public class BOJ_1967 {
 			res = visited[cur];
 			leaf = cur;
 		}
+		
 		for(Node n : tree[cur]) {
 			if(visited[n.next] != -1)
 				continue;
