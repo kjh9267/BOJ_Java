@@ -14,35 +14,57 @@ import java.util.PriorityQueue;
 
 public class BOJ_11279 {
 
+	private static final String NEW_LINE = "\n";
+
+	private static final String ZERO = "0";
+
+	private static final int DELETE = 0;
+
 	public static void main(String[] args) throws Exception{
 		StringBuilder sb = new StringBuilder();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		PriorityQueue<Num> pq = new PriorityQueue<Num>();
+		PriorityQueue<Number> pq = new PriorityQueue<>();
 		int N = Integer.parseInt(br.readLine());
 		
 		while(N-- > 0) {
-			int op = Integer.parseInt(br.readLine());
-			if(op == 0) {
-				if(pq.isEmpty())
-					sb.append("0\n");
-				else
-					sb.append(pq.poll().num).append('\n');
+			int inputNumber = Integer.parseInt(br.readLine());
+
+			if(inputNumber == DELETE) {
+				delete(sb, pq);
 			}
-			else
-				pq.add(new Num(op));
+			else {
+				add(pq, inputNumber);
+			}
 		}
 		System.out.println(sb);
 	}
 
-	private static class Num implements Comparable<Num>{
-		int num;
-		public Num(int num) {
-			this.num = num;
+	private static void add(PriorityQueue<Number> pq, int inputNumber) {
+		pq.add(new Number(inputNumber));
+	}
+
+	private static void delete(StringBuilder sb, PriorityQueue<Number> pq) {
+		if(pq.isEmpty()) {
+			sb.append(ZERO)
+					.append(NEW_LINE);
 		}
+		else {
+			Number number = pq.poll();
+			sb.append(number.value)
+					.append(NEW_LINE);
+		}
+	}
+
+	private static class Number implements Comparable<Number>{
+		int value;
+
+		Number(int value) {
+			this.value = value;
+		}
+
 		@Override
-		public int compareTo(Num o) {
-			return o.num - this.num;
+		public int compareTo(Number o) {
+			return o.value - this.value;
 		}
-		
 	}
 }

@@ -8,6 +8,8 @@ import java.util.StringTokenizer;
 
 public class BOJ_11005 {
 
+    private static final char A = 'A';
+
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -31,8 +33,9 @@ public class BOJ_11005 {
 
     private static String convert(int num) {
         if (num < 10) {
-            return num + "";
+            return String.valueOf(num);
         }
-        return (char) ('A' + (num - 10)) + "";
+
+        return String.valueOf((char) (A + (num - 10)));
     }
 }

@@ -1,5 +1,7 @@
 package implementation;
 
+// https://www.acmicpc.net/problem/2960
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
@@ -11,21 +13,23 @@ public class BOJ_2960 {
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		int N = Integer.parseInt(st.nextToken());
 		int K = Integer.parseInt(st.nextToken());
-		boolean[] nums = new boolean[N + 1];
+		boolean[] isPrime = new boolean[N + 1];
 		int cnt = 0;
 
-		for (int i = 2; i <= N; i++) {
-			if (nums[i])
+		for (int number = 2; number <= N; number++) {
+			if (isPrime[number]) {
 				continue;
-			for (int j = i; j <= N; j += i) {
-				if (nums[j])
+			}
+			for (int multipleNumber = number; multipleNumber <= N; multipleNumber += number) {
+				if (isPrime[multipleNumber]) {
 					continue;
-				cnt++;
+				}
+				cnt += 1;
 				if (cnt == K) {
-					System.out.println(j);
+					System.out.println(multipleNumber);
 					System.exit(0);
 				}
-				nums[j] = true;
+				isPrime[multipleNumber] = true;
 			}
 		}
 	}

@@ -1,78 +1,108 @@
 package implementation;
 
+// https://www.acmicpc.net/problem/1913
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 
 public class BOJ_1913 {
-	private static final int[][] DIR = { { 0, -1 }, { 1, 0 }, { 0, 1 }, { -1, 0 } };
-	private static int index;
-	private static int startX;
-	private static int startY;
-	private static int nextX;
-	private static int nextY;
-	private static int[][] graph;
 
-	public static void main(String[] args) throws Exception {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder sb = new StringBuilder();
-		int N = Integer.parseInt(br.readLine());
-		int target = Integer.parseInt(br.readLine());
-		graph = new int[N][N];
-		startX = 0;
-		startY = 0;
+    private static final int[][] DIR = {{0, -1}, {1, 0}, {0, 1}, {-1, 0}};
 
-		if (N % 2 == 0) {
-			startX = N / 2 - 1;
-			startY = N / 2;
-		} else {
-			startX = N / 2;
-			startY = N / 2;
-		}
+    private static final String SPACE = " ";
 
-		graph[startY][startX] = 1;
+    private static final String NEW_LINE = "\n";
 
-		for (int i = 1; i < N; i++) {
-			go(i);
-			cycle();
-			go(i);
-			cycle();
-			if(i == N - 1)
-				go(i);
-		}
-		System.out.println(res(N,target));
-	}
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(br.readLine());
+        int target = Integer.parseInt(br.readLine());
 
-	private static void cycle() {
-		if(++index == 4)
-			index = 0;
-	}
+        int direction = 0;
 
-	private static void go(int threshold) {
-		for (int i = 0; i < threshold; i++) {
-			nextX = startX + DIR[index][0];
-			nextY = startY + DIR[index][1];
-			graph[nextY][nextX] = graph[startY][startX] + 1;
-			startX = nextX;
-			startY = nextY;
-		}
-	}
+        Point point = initPoint(N);
 
-	private static StringBuilder res(int N, int target) {
-		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < N; i++) {
-			for(int j = 0; j < N; j++) {
-				sb.append(graph[i][j]).append(" ");
-			}
-			sb.append('\n');
-		}
-		for(int i = 0; i < N; i++) {
-			for(int j = 0; j < N; j++) {
-				if(graph[i][j] == target) {
-					sb.append((i + 1) + " " + (j + 1));
-				}
-			}
-		}
-		return sb;
-	}
+        int[][] graph = new int[N][N];
+        graph[point.y][point.x] = 1;
+
+        for (int threshold = 1; threshold < N; threshold++) {
+            point.move(threshold, direction, graph);
+            direction = changeDirection(direction);
+            point.move(threshold, direction, graph);
+            direction = changeDirection(direction);
+
+            if (threshold == N - 1) {
+                point.move(threshold, direction, graph);
+            }
+        }
+
+        System.out.println(getResult(N, target, graph));
+    }
+
+    private static class Point {
+        int x;
+        int y;
+
+        Point(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        private void move(int threshold, int direction, int[][] graph) {
+            for (int count = 0; count < threshold; count++) {
+                int nextX = x + DIR[direction][0];
+                int nextY = y + DIR[direction][1];
+                graph[nextY][nextX] = graph[y][x] + 1;
+                x = nextX;
+                y = nextY;
+            }
+        }
+    }
+
+    private static Point initPoint(int N) {
+        int x;
+        int y;
+
+        if (N % 2 == 0) {
+            x = N / 2 - 1;
+            y = N / 2;
+        } else {
+            x = N / 2;
+            y = N / 2;
+        }
+
+        return new Point(x, y);
+    }
+
+    private static int changeDirection(int direction) {
+        if (++direction == 4) {
+            direction = 0;
+        }
+        return direction;
+    }
+
+    private static StringBuilder getResult(int N, int target, int[][] graph) {
+        StringBuilder sb = new StringBuilder();
+
+        for (int row = 0; row < N; row++) {
+            for (int col = 0; col < N; col++) {
+                sb.append(graph[row][col])
+                        .append(SPACE);
+            }
+
+            sb.append(NEW_LINE);
+        }
+
+        for (int row = 0; row < N; row++) {
+            for (int col = 0; col < N; col++) {
+                if (graph[row][col] == target) {
+                    sb.append(row + 1)
+                            .append(SPACE)
+                            .append(col + 1);
+                }
+            }
+        }
+
+        return sb;
+    }
 }

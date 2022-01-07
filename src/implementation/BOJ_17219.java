@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 public class BOJ_17219 {
+
     private static final String NEW_LINE = "\n";
 
     public static void main(String[] args) throws Exception{
@@ -28,7 +29,8 @@ public class BOJ_17219 {
 
         while (M-- > 0){
             String url = br.readLine();
-            sb.append(table.get(url)).append(NEW_LINE);
+            sb.append(table.get(url))
+                    .append(NEW_LINE);
         }
 
         System.out.print(sb);
