@@ -1,4 +1,4 @@
-package breadth_first_search;
+package depth_first_search;
 
 // https://www.acmicpc.net/problem/11724
 
