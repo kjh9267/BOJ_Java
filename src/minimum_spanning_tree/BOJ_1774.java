@@ -124,7 +124,7 @@ public class BOJ_1774 {
             count += 1;
             minimumCost += link.cost;
 
-            if (count == N - M - 1) {
+            if (count == N - 1) {
                 break;
             }
         }
