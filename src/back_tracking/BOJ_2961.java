@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -15,11 +16,9 @@ public class BOJ_2961 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
 
-        Ingredient[] ingredients = new Ingredient[N + 1];
+        Ingredient[] ingredients = new Ingredient[N];
 
-        ingredients[0] = new Ingredient(1, 0);
-
-        for (int index = 1; index <= N; index++) {
+        for (int index = 0; index < N; index++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
             int multiple = Integer.parseInt(st.nextToken());
             int sum = Integer.parseInt(st.nextToken());
@@ -44,7 +43,7 @@ public class BOJ_2961 {
         long[] minValue = {Long.MAX_VALUE};
 
         for (int target = 1; target <= N; target++) {
-            dfs(0, -1, target, new ArrayList<>(), minValue, ingredients, N);
+            dfs(0, 0, target, new ArrayList<>(), minValue, ingredients, N);
         }
 
         return minValue[0];
@@ -56,12 +55,12 @@ public class BOJ_2961 {
             return;
         }
 
-        for (int next = cur + 1; next <= N + 1; next++) {
-            int multiple = ingredients[cur].multiple;
-            int sum = ingredients[cur].sum;
+        for (int next = cur; next < N; next++) {
+            int multiple = ingredients[next].multiple;
+            int sum = ingredients[next].sum;
 
             data.add(new Ingredient(multiple, sum));
-            dfs(next, depth + 1, target, data, minValue, ingredients, N);
+            dfs(next + 1, depth + 1, target, data, minValue, ingredients, N);
             data.remove(data.size() - 1);
         }
     }
