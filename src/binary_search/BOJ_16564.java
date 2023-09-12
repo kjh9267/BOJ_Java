@@ -15,37 +15,55 @@ import java.util.StringTokenizer;
 
 public class BOJ_16564 {
 
-	private static int[] levels;
-	
+	private static final int LIMIT = 2_000_000_001;
+
 	public static void main(String[] args) throws Exception{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		int N = Integer.parseInt(st.nextToken());
 		int K = Integer.parseInt(st.nextToken());
-		levels = new int[N];
+		int[] levels = new int[N];
 		
-		for(int i = 0; i < N; i++)
-			levels[i] = Integer.parseInt(br.readLine());
+		for (int index = 0; index < N; index++) {
+			levels[index] = Integer.parseInt(br.readLine());
+		}
 		Arrays.sort(levels);
 		
-		System.out.println(binarySearch(N, K));
+		System.out.println(binarySearch(N, K, levels));
 	}
 
-	private static long binarySearch(int N, int K) {
+	private static long binarySearch(int N, int K, int[] levels) {
 		long lo = 1;
-		long hi = 1_000_000_001;
+		long hi = LIMIT;
 		
-		while(lo + 1 < hi) {
+		while (lo + 1 < hi) {
 			long mid = (lo + hi) >> 1;
-			long sum = 0;
 
-			for(int i = 0 ; i < N; i++)
-				sum += mid < levels[i] ? 0 : mid - levels[i];
-			if(sum <= K)
+			if (isPossible(N, K, levels, mid)) {
 				lo = mid;
-			else
+			}
+			else {
 				hi = mid;
+			}
 		}
+
 		return lo;
+	}
+
+	private static boolean isPossible(int N, int K, int[] levels, long target) {
+		int sum = K;
+
+		for (int index = 0; index < N; index++) {
+			if (levels[index] >= target) {
+				continue;
+			}
+			sum -= target - levels[index];
+
+			if (sum < 0) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 }
