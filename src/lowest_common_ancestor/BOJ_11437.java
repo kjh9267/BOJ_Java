@@ -78,38 +78,28 @@ public class BOJ_11437 {
     }
 
     private static void initParents(int N, int[][] parents, int logN) {
-        for (int node = START; node <= N; node++) {
-            for (int exp = 1; exp <= logN; exp++) {
-                fillExpParents(parents, node, exp);
-            }
-        }
-    }
-
-    private static void fillExpParents(int[][] parents, int node, int exp) {
-        int size = (int) Math.pow(2, exp - 1);
-
-        int temp = parents[node][exp - 1];
-        for (int count = 0; count < size; count++) {
-            parents[node][exp] = parents[temp][0];
-            temp = parents[temp][0];
+        for (int exp = 1; exp <= logN; exp++) {
+            for (int node = START; node <= N; node++) {
+                int prevNode = parents[node][exp - 1];
+                parents[node][exp] = parents[prevNode][exp - 1];}
         }
     }
 
     private static int findLowestCommonAncestor(int x, int y, int[] depth, int[][] parents, int logN) {
-        if (depth[x] > depth[y]) {
-            int temp = x;
-            x = y;
-            y = temp;
+        if (depth[x] < depth[y]) {
+            int temp = y;
+            y = x;
+            x = temp;
         }
 
         for (int exp = logN; exp >= 0; exp--) {
-            if (Math.pow(2, exp) > depth[y] - depth[x]) {
+            if (Math.pow(2, exp) > depth[x] - depth[y]) {
                 continue;
             }
-            if (depth[x] > depth[parents[y][exp]]) {
+            if (depth[y] > depth[parents[x][exp]]) {
                 continue;
             }
-            y = parents[y][exp];
+            x = parents[x][exp];
         }
 
         for (int exp = logN; exp >= 0; exp--) {
