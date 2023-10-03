@@ -103,10 +103,11 @@ public class BOJ_11438 {
             x = parents[x][exp];
         }
 
+        if (x == y) {
+            return x;
+        }
+        
         for (int exp = logN; exp >= 0; exp--) {
-            if (x == y) {
-                break;
-            }
             if (parents[x][exp] == parents[y][exp]) {
                 continue;
             }
@@ -114,9 +115,6 @@ public class BOJ_11438 {
             y = parents[y][exp];
         }
 
-        if (x == y) {
-            return x;
-        }
         return parents[x][0];
     }
 }
