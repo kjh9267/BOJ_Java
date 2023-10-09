@@ -95,12 +95,8 @@ public class BOJ_14428 {
             return tree[node];
         }
 
-        if (tree[node].index == index) {
-            tree[node] = new Node(value, index);
-        }
-
         if (start == end) {
-            return tree[node];
+            return tree[node] = new Node(value, index);
         }
 
         int mid = (start + end) >> 1;
