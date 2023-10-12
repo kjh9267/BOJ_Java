@@ -12,65 +12,70 @@ import java.io.InputStreamReader;
  */
 
 public class BOJ_1786 {
-	private static int[] table;
-	private static char[] string;
-	private static char[] target;
-	private static int N;
-	private static int M;
-	private static int cnt;
-	private static StringBuilder sb;
-	
-	public static void main(String[] args) throws Exception{
-		sb = new StringBuilder();
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		string = br.readLine().toCharArray();
-		target = br.readLine().toCharArray();
 
-		init();
-		kmp();
+	private static final String SPACE = " ";
+
+	public static void main(String[] args) throws Exception{
+		StringBuilder sb = new StringBuilder();
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		char[] data = br.readLine()
+				.toCharArray();
+		char[] word = br.readLine()
+				.toCharArray();
+
+		int N = data.length;
+		int M = word.length;
+		int[] fix = new int[M];
+
+		init(M, word, fix);
+		int count = kmp(data, word, fix, N, M, sb);
 		
-		System.out.println(cnt);
+		System.out.println(count);
 		System.out.println(sb);
 	}
 
-	private static void init() {
-		N = string.length;
-		M = target.length;
-		table = new int[M];
-		int idx = 1;
-		int offset = 0;
-		while(idx + offset < M) {
-			if(target[idx + offset] == target[offset]) {
-				offset += 1;
-				table[idx + offset - 1] = offset;
+	private static void init(int M, char[] word, int[] fix) {
+		int start = 1;
+		int matched = 0;
+
+		while (start + matched < M) {
+			if (word[matched] == word[start + matched]) {
+				matched += 1;
+				fix[start + matched - 1] = matched;
 			}
-			else if(offset == 0)
-				idx += 1;
+			else if (matched == 0) {
+				start += 1;
+			}
 			else {
-				idx += offset - table[offset - 1];
-				offset = table[offset - 1];
+				start += matched - fix[matched - 1];
+				matched = fix[matched - 1];
 			}
 		}
 	}
 
-	private static void kmp() {
-		cnt = 0;
-		int idx = 0;
-		int offset = 0;
-		while(idx <= N - M) {
-			if(offset < M && string[idx + offset] == target[offset]) {
-				offset += 1;
-				if(offset == M) {
-					sb.append(idx + 1).append(' ');
-					cnt += 1;
+	private static int kmp(char[] data, char[] word, int[] fix, int N, int M, StringBuilder sb) {
+		int count = 0;
+		int start = 0;
+		int matched = 0;
+
+		while (start + matched < N) {
+			if (matched < M && data[start + matched] == word[matched]) {
+				matched += 1;
+				if (matched == M) {
+					sb.append(start + 1)
+							.append(SPACE);
+					count += 1;
 				}
 			}
-			else if(offset == 0)
-				idx += 1;
+			else if (matched == 0) {
+				start += 1;
+			}
 			else {
-				idx += offset - table[offset - 1];
-				offset = table[offset - 1];
+				start += matched - fix[matched - 1];
+				matched = fix[matched - 1];
 			}
 		}
+
+		return count;
 	}
 }
