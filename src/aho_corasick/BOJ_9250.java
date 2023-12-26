@@ -116,14 +116,14 @@ public class BOJ_9250 {
         TrieNode node = root;
 
         for (char c: data.toCharArray()) {
-            int value = c - 'a';
+            int index = c - 'a';
 
-            while (node != root && node.children[value] == null) {
+            while (node != root && node.children[index] == null) {
                 node = node.fail;
             }
 
-            if (node.children[value] != null) {
-                node = node.children[value];
+            if (node.children[index] != null) {
+                node = node.children[index];
             }
 
             if (node.end) {
