@@ -55,7 +55,6 @@ public class BOJ_2367 {
         st = new StringTokenizer(br.readLine());
         for (int food = N + 1; food <= N + D; food++) {
             graph[food * 2 + 1][sink] = true;
-            graph[sink][food * 2 + 1] = true;
             graph[food * 2][food * 2 + 1] = true;
             graph[food * 2 + 1][food * 2] = true;
             capacities[food * 2 + 1][sink] = INF;
@@ -66,7 +65,6 @@ public class BOJ_2367 {
             st = new StringTokenizer(br.readLine());
             int Z = Integer.parseInt(st.nextToken());
             graph[SOURCE][person * 2] = true;
-            graph[person * 2][SOURCE] = true;
             graph[person * 2][person * 2 + 1] = true;
             graph[person * 2 + 1][person * 2] = true;
             capacities[SOURCE][person * 2] = INF;
