@@ -32,14 +32,14 @@ public class BOJ_9250 {
             trieNode.insert(words[index], -1);
         }
 
-        bfs(trieNode);
+        trieNode.bfs(trieNode);
 
         int Q = Integer.parseInt(br.readLine());
 
         for (int index = 0; index < Q; index++) {
             String data = br.readLine();
 
-            if (find(data, trieNode)) {
+            if (trieNode.find(data, trieNode)) {
                 sb.append(YES);
             }
             else {
@@ -76,61 +76,61 @@ public class BOJ_9250 {
 
             children[index].insert(word, depth + 1);
         }
-    }
 
-    private static void bfs(TrieNode root) {
-        Queue<TrieNode> queue = new LinkedList<>();
-        queue.offer(root);
+        void bfs(TrieNode root) {
+            Queue<TrieNode> queue = new LinkedList<>();
+            queue.offer(root);
 
-        root.fail = root;
+            root.fail = root;
 
-        while (!queue.isEmpty()) {
-            TrieNode cur = queue.poll();
+            while (!queue.isEmpty()) {
+                TrieNode cur = queue.poll();
 
-            for (int index = 0; index < CHILDREN_SIZE; index++) {
-                TrieNode next = cur.children[index];
-                if (next == null) {
-                    continue;
-                }
-                if (cur == root) {
-                    next.fail = root;
-                }
-                else {
-                    TrieNode node = cur.fail;
-
-                    while (node != root && node.children[index] == null) {
-                        node = node.fail;
+                for (int index = 0; index < CHILDREN_SIZE; index++) {
+                    TrieNode next = cur.children[index];
+                    if (next == null) {
+                        continue;
                     }
-                    if (node.children[index] != null) {
-                        node = node.children[index];
+                    if (cur == root) {
+                        next.fail = root;
                     }
-                    next.fail = node;
+                    else {
+                        TrieNode node = cur.fail;
+
+                        while (node != root && node.children[index] == null) {
+                            node = node.fail;
+                        }
+                        if (node.children[index] != null) {
+                            node = node.children[index];
+                        }
+                        next.fail = node;
+                    }
+                    next.end = next.end || next.fail.end;
+                    queue.offer(next);
                 }
-                next.end = next.end || next.fail.end;
-                queue.offer(next);
-            }
-        }
-    }
-
-    private static boolean find(String data, TrieNode root) {
-        TrieNode node = root;
-
-        for (char c: data.toCharArray()) {
-            int index = c - 'a';
-
-            while (node != root && node.children[index] == null) {
-                node = node.fail;
-            }
-
-            if (node.children[index] != null) {
-                node = node.children[index];
-            }
-
-            if (node.end) {
-                return true;
             }
         }
 
-        return false;
+        boolean find(String data, TrieNode root) {
+            TrieNode node = root;
+
+            for (char c: data.toCharArray()) {
+                int index = c - 'a';
+
+                while (node != root && node.children[index] == null) {
+                    node = node.fail;
+                }
+
+                if (node.children[index] != null) {
+                    node = node.children[index];
+                }
+
+                if (node.end) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }
