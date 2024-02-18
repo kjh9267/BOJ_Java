@@ -34,19 +34,20 @@ public class BOJ_5735 {
                 break;
             }
 
-            TrieNode root = new TrieNode(false, new TrieNode[CHILDREN_SIZE], null);
+            TrieNode trie = new TrieNode(false, new TrieNode[CHILDREN_SIZE], null);
+            trie.root = trie;
 
             for (int count = 0; count < N; count++) {
                 String word = br.readLine();
-                root.insert(-1, word.toCharArray());
+                trie.insert(-1, word.toCharArray());
             }
 
-            root.bfs(root);
+            trie.bfs();
 
             result = 0;
             for (int count = 0; count < M; count++) {
                 String data = br.readLine();
-                root.find(root, data.toCharArray());
+                trie.find(data.toCharArray());
             }
             sb.append(result)
                     .append(NEW_LINE);
@@ -78,6 +79,8 @@ public class BOJ_5735 {
         }
     }
     private static class TrieNode {
+
+        static TrieNode root;
         boolean end;
         TrieNode[] children;
         TrieNode fail;
@@ -103,7 +106,7 @@ public class BOJ_5735 {
             children[index].insert(depth + 1, word);
         }
 
-        void bfs(TrieNode root) {
+        static void bfs() {
             Queue<TrieNode> queue = new LinkedList<>();
             queue.offer(root);
 
@@ -140,7 +143,7 @@ public class BOJ_5735 {
             }
         }
 
-        void find(TrieNode root, char[] data) {
+        static void find(char[] data) {
             TrieNode node = root;
 
             for (char c: data) {

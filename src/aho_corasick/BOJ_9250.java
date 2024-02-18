@@ -23,23 +23,24 @@ public class BOJ_9250 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
         String[] words = new String[N];
-        TrieNode trieNode = new TrieNode(false, null, new TrieNode[CHILDREN_SIZE]);
+        TrieNode trie = new TrieNode(false, null, new TrieNode[CHILDREN_SIZE]);
+        trie.root = trie;
 
         for (int index = 0; index < N; index++) {
             words[index] = br.readLine()
                     .trim();
 
-            trieNode.insert(words[index], -1);
+            trie.insert(words[index], -1);
         }
 
-        trieNode.bfs(trieNode);
+        trie.bfs();
 
         int Q = Integer.parseInt(br.readLine());
 
         for (int index = 0; index < Q; index++) {
             String data = br.readLine();
 
-            if (trieNode.find(data, trieNode)) {
+            if (trie.find(data)) {
                 sb.append(YES);
             }
             else {
@@ -52,6 +53,7 @@ public class BOJ_9250 {
     }
 
     private static class TrieNode {
+        static TrieNode root;
         boolean end;
         TrieNode fail;
         TrieNode[] children;
@@ -77,7 +79,7 @@ public class BOJ_9250 {
             children[index].insert(word, depth + 1);
         }
 
-        void bfs(TrieNode root) {
+        static void bfs() {
             Queue<TrieNode> queue = new LinkedList<>();
             queue.offer(root);
 
@@ -111,7 +113,7 @@ public class BOJ_9250 {
             }
         }
 
-        boolean find(String data, TrieNode root) {
+        static boolean find(String data) {
             TrieNode node = root;
 
             for (char c: data.toCharArray()) {
