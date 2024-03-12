@@ -1,22 +1,28 @@
 package bipartite_matching;
 
-// https://www.acmicpc.net/problem/9525
+// https://www.acmicpc.net/problem/1574
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.StringTokenizer;
 
-public class BOJ_9525 {
+public class BOJ_1574 {
 
     private static final char WALL = 'X';
 
+    private static final int SIZE = 10_000;
+
     private static final int[][] DIR = {{0, 1}, {1, 0}};
 
-    private static int N;
+    private static int R;
 
-    private static int size;
+    private static int C;
+
+    private static int N;
 
     private static char[][] grid;
 
@@ -30,12 +36,17 @@ public class BOJ_9525 {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        N = Integer.parseInt(br.readLine());
-        grid = new char[N][N];
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        R = Integer.parseInt(st.nextToken());
+        C = Integer.parseInt(st.nextToken());
+        N = Integer.parseInt(st.nextToken());
+        grid = new char[R][C];
 
-        for (int row = 0; row < N; row++) {
-            grid[row] = br.readLine()
-                    .toCharArray();
+        for (int count = 0; count < N; count++) {
+            st = new StringTokenizer(br.readLine());
+            int row = Integer.parseInt(st.nextToken()) - 1;
+            int col = Integer.parseInt(st.nextToken()) - 1;
+            grid[row][col] = WALL;
         }
 
         init();
@@ -45,17 +56,16 @@ public class BOJ_9525 {
     }
 
     private static void init() {
-        size = N * N + 2;
-        graph = new List[size];
-        int[][][] nodes = new int[N][N][2];
+        graph = new List[SIZE];
+        int[][][] nodes = new int[R][C][2];
         int node = 0;
 
-        for (int index = 1; index < size; index++) {
+        for (int index = 1; index < SIZE; index++) {
             graph[index] = new ArrayList<>();
         }
 
-        for (int row = 0; row < N; row++) {
-            for (int col = 0; col < N; col++) {
+        for (int row = 0; row < R; row++) {
+            for (int col = 0; col < C; col++) {
                 if (grid[row][col] == WALL) {
                     continue;
                 }
@@ -72,11 +82,11 @@ public class BOJ_9525 {
                         nextRow += DIR[direction][0];
                         nextCol += DIR[direction][1];
 
-                        if (nextRow < 0 || nextRow == N || nextCol < 0 || nextCol == N) {
+                        if (nextRow < 0 || nextRow == R || nextCol < 0 || nextCol == C) {
                             break;
                         }
                         if (grid[nextRow][nextCol] == WALL) {
-                            break;
+                            continue;
                         }
                         if (nodes[nextRow][nextCol][direction] > 0) {
                             break;
@@ -86,8 +96,8 @@ public class BOJ_9525 {
             }
         }
 
-        for (int row = 0; row < N; row++) {
-            for (int col = 0; col < N; col++) {
+        for (int row = 0; row < R; row++) {
+            for (int col = 0; col < C; col++) {
                 if (grid[row][col] == WALL) {
                     continue;
                 }
@@ -100,11 +110,11 @@ public class BOJ_9525 {
 
     private static int bipartiteMatch() {
         int total = 0;
-        A = new int[size];
-        B = new int[size];
+        A = new int[SIZE];
+        B = new int[SIZE];
 
-        for (int node = 1; node < size; node++) {
-            visited = new boolean[size];
+        for (int node = 1; node < SIZE; node++) {
+            visited = new boolean[SIZE];
 
             if (dfs(node)) {
                 total += 1;
