@@ -78,9 +78,6 @@ public class BOJ_9525 {
                         if (grid[nextRow][nextCol] == WALL) {
                             break;
                         }
-                        if (nodes[nextRow][nextCol][direction] > 0) {
-                            break;
-                        }
                     }
                 }
             }

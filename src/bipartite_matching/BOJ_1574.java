@@ -6,7 +6,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -83,12 +82,6 @@ public class BOJ_1574 {
                         nextCol += DIR[direction][1];
 
                         if (nextRow < 0 || nextRow == R || nextCol < 0 || nextCol == C) {
-                            break;
-                        }
-                        if (grid[nextRow][nextCol] == WALL) {
-                            continue;
-                        }
-                        if (nodes[nextRow][nextCol][direction] > 0) {
                             break;
                         }
                     }
