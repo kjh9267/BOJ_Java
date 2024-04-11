@@ -12,9 +12,7 @@ import static java.lang.Math.*;
 
 public class BOJ_22620 {
 
-    private static final double INF = 14_142.1356237310;
-
-    private static final double DIFF = 1e-10;
+    private static final double INF = 14_142.135_623_730_9 + 1e-323;
 
     private static final int NOT_VISITED = -1;
 
@@ -98,10 +96,10 @@ public class BOJ_22620 {
     }
 
     private static double binarySearch() {
-        double lo = 0.0;
+        double lo = -1e-323;
         double hi = INF;
 
-        while (lo + DIFF < hi) {
+        for (int count = 0; count < 100; count++) {
             double mid = (lo + hi) / 2;
             double time = bipartiteMatch(mid);
 
