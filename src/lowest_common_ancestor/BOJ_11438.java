@@ -94,9 +94,6 @@ public class BOJ_11438 {
         }
 
         for (int exp = logN; exp >= 0; exp--) {
-            if (Math.pow(2, exp) > depth[x] - depth[y]) {
-                continue;
-            }
             if (depth[y] > depth[parents[x][exp]]) {
                 continue;
             }
